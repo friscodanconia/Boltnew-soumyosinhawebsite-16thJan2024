@@ -32,7 +32,7 @@ export function Projects() {
               <div className="flex items-start">
                 <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
                 <div className="flex-1">
-                  <span className="text-amber-600 dark:text-amber-400 hover:underline">{project.title}</span>
+                  <span className="text-sm text-amber-600 dark:text-amber-400 hover:underline">{project.title}</span>
                   <span className="text-sm text-gray-600 dark:text-gray-300 ml-2">
                     — {project.description}
                   </span>
