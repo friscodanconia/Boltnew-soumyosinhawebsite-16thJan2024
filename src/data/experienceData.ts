@@ -24,7 +24,7 @@ export const experienceData = {
     period: "2019 - 2021",
     location: "Seattle, United States",
     link: "https://www.disney.com/",
-    description: "Led marketing and business strategy for Disney's streaming services...",
+    description: "Led marketing and the P&L for Disney's streaming services, managed a team of 50+ with annual budgets overview of $50M+.",
     achievements: [
       "Drove <a href='https://thewaltdisneycompany.com/disney-launches-today-and-a-new-era-of-disney-entertainment-begins/' target='_blank' rel='noopener noreferrer'>Disney Plus launch across markets</a>",
       "Ran marketing for <a href='https://variety.com/2021/streaming/asia/disney-plus-singapore-launch-1234897945/' target='_blank' rel='noopener noreferrer'>Disney Plus launch Singapore</a>",
