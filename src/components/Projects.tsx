@@ -22,39 +22,21 @@ export function Projects() {
           </div>
         </header>
 
-        <div className="grid gap-8" ref={contentRef}>
+        <div className="space-y-3" ref={contentRef}>
           {projectsData.projects.items.map((project) => (
             <Link
               key={project.id}
               to={`/projects/${project.slug}`}
               className="block group"
             >
-              <div className="relative overflow-hidden rounded-lg mb-4">
-                <img
-                  src={project.thumbnail}
-                  alt={project.title}
-                  className="w-full h-48 object-cover transform transition-transform duration-300 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
-              
-              <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
-                {project.title}
-              </h2>
-              
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
-                {project.description}
-              </p>
-
-              <div className="flex flex-wrap gap-2">
-                {project.technologies.map((tech, index) => (
-                  <span 
-                    key={index}
-                    className="px-2 py-1 text-xs rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400"
-                  >
-                    {tech}
+              <div className="flex items-start">
+                <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                <div className="flex-1">
+                  <span className="text-amber-600 dark:text-amber-400 hover:underline">{project.title}</span>
+                  <span className="text-sm text-gray-600 dark:text-gray-300 ml-2">
+                    — {project.description}
                   </span>
-                ))}
+                </div>
               </div>
             </Link>
           ))}
