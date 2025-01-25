@@ -24,21 +24,21 @@ export function Projects() {
 
         <div className="space-y-3" ref={contentRef}>
           {projectsData.projects.items.map((project) => (
-            <Link
-              key={project.id}
-              to={`/projects/${project.slug}`}
-              className="block group"
-            >
-              <div className="flex items-start">
-                <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
-                <div className="flex-1">
-                  <span className="text-sm text-amber-600 dark:text-amber-400 hover:underline">{project.title}</span>
-                  <span className="text-sm text-gray-600 dark:text-gray-300 ml-2">
-                    — {project.description}
-                  </span>
-                </div>
+            <div key={project.id} className="flex items-start">
+              <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+              <div className="flex-1">
+                <Link
+                  to={`/projects/${project.slug}`}
+                  className="text-sm text-amber-600 dark:text-amber-400 hover:underline"
+                >
+                  {project.title}
+                </Link>
+                <span 
+                  className="text-sm text-gray-600 dark:text-gray-300 ml-2"
+                  dangerouslySetInnerHTML={{ __html: `— ${project.description}` }}
+                />
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>

@@ -51,31 +51,18 @@ export function ProjectDetail() {
             </h1>
           </div>
 
-          <div className="flex flex-wrap gap-2 mb-8">
-            {project.technologies.map((tech, index) => (
-              <span 
-                key={index}
-                className="px-3 py-1 text-xs rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-
           <div className="space-y-12">
             <section>
               <h2 className="text-base font-medium text-gray-900 dark:text-gray-100 mb-4">Overview</h2>
               <p className="text-sm text-gray-600 dark:text-gray-300">
-                {project.description}
+                A comprehensive movie information site built using AI tools like Claude, Bolt.new and publicly available APIs from TMDB. A user can enter movie related terms and will be delivered relevant search results. You can check out the experience at <a href="https://www.cinemagic.me" target="_blank" rel="noopener noreferrer" className="text-amber-600 dark:text-amber-400 hover:underline">cinemagic.me</a>
               </p>
             </section>
 
             <section>
               <h2 className="text-base font-medium text-gray-900 dark:text-gray-100 mb-4">The Why</h2>
               <p className="text-sm text-gray-600 dark:text-gray-300">
-                {project.why || `${project.title} addresses key challenges in ${project.technologies[0]} development, 
-                offering innovative solutions for modern technical requirements. This project emerged from 
-                the need to streamline development processes and enhance user experiences in ${project.technologies[1]} applications.`}
+                I like movies, but a bit frustrated by the increasingly complicated user journey of IMDB. I wanted to build a simple user experience where you can enter the name of movie, actor, actress and get relevant results. This tool is free of charge and using the TMDB API to get results and uses some custom ranking logic to display results.
               </p>
             </section>
 
@@ -94,15 +81,29 @@ export function ProjectDetail() {
             <section>
               <h2 className="text-base font-medium text-gray-900 dark:text-gray-100 mb-4">Technologies Used</h2>
               <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
-                This project was built using a modern tech stack including:
+                This project used:
               </p>
               <ul className="space-y-3">
-                {project.technologies.map((tech, index) => (
-                  <li key={index} className="flex items-start">
-                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
-                    <span className="text-sm text-gray-600 dark:text-gray-300">{tech}</span>
-                  </li>
-                ))}
+                <li className="flex items-start">
+                  <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                  <span className="text-sm text-gray-600 dark:text-gray-300">TMDB API</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                  <span className="text-sm text-gray-600 dark:text-gray-300">Visual Code</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                  <span className="text-sm text-gray-600 dark:text-gray-300">Claude</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                  <span className="text-sm text-gray-600 dark:text-gray-300">Deepseek (for troubleshooting help)</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                  <span className="text-sm text-gray-600 dark:text-gray-300">Extensive debugging (most time-consuming aspect)</span>
+                </li>
               </ul>
             </section>
           </div>
