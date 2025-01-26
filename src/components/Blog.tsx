@@ -13,7 +13,7 @@ interface Post {
  slug: {
    current: string;
  };
- content: any[];
+ body: any[];
 }
 
 export function Blog() {
@@ -25,13 +25,14 @@ export function Blog() {
  useEffect(() => {
    const fetchPosts = async () => {
      try {
-      const data = await client.fetch(`*[_type == "post"]{
-        _id,
-        title,
-        slug,
-        body // Instead of content
-      }`);
-       console.log('Sanity data:', data);
+       console.log('Fetching posts...');
+       const data = await client.fetch(`*[_type == "post"]{
+         _id,
+         title,
+         slug,
+         body
+       }`);
+       console.log('Fetched data:', data);
        setPosts(data);
      } catch (error) {
        console.error('Sanity fetch error:', error);
