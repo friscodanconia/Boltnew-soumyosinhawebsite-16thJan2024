@@ -96,7 +96,8 @@ export function BlogPost() {
       try {
         setIsLoading(true);
         setError(null);
-        const response = await fetch(`http://localhost:3001/api/posts/${slug}`);
+        // Use relative URL to automatically use the current domain
+        const response = await fetch(`/api/posts/${slug}`);
         if (!response.ok) throw new Error(`Failed to fetch post: ${response.status}`);
         const data = await response.json();
         if (!data) throw new Error('No post data received');
