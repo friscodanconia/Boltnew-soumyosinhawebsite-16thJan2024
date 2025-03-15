@@ -18,7 +18,7 @@ export function Projects() {
         <header className="mb-12">
           <div className="flex items-center space-x-2 mb-4">
             <Briefcase className="w-6 h-6 text-gray-600 dark:text-gray-400" />
-            <h1 className="text-base font-medium text-gray-900 dark:text-gray-100">Projects</h1>
+            <h1 className="text-lg font-medium leading-snug text-gray-900 dark:text-gray-100">Projects</h1>
           </div>
         </header>
 
@@ -34,7 +34,7 @@ export function Projects() {
                   {project.title}
                 </Link>
                 <span 
-                  className="text-sm text-gray-600 dark:text-gray-300 ml-2"
+                  className="text-sm leading-relaxed text-gray-600 dark:text-gray-300 ml-2"
                   dangerouslySetInnerHTML={{ __html: `— ${project.description}` }}
                 />
               </div>

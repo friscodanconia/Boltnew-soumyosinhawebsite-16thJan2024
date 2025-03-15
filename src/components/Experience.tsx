@@ -17,7 +17,7 @@ export function Experience() {
         <header className="mb-12">
           <div className="flex items-center space-x-2 mb-4">
             <Briefcase className="w-6 h-6 text-gray-600 dark:text-gray-400" />
-            <h1 className="text-base font-medium text-gray-900 dark:text-gray-100">Experience</h1>
+            <h1 className="text-lg font-medium leading-snug text-gray-900 dark:text-gray-100">Experience</h1>
           </div>
         </header>
 
@@ -27,7 +27,7 @@ export function Experience() {
               <div className="mb-6">
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-1">
-                    <h2 className="text-base font-medium text-gray-900 dark:text-gray-100">
+                    <h2 className="text-base font-medium leading-snug text-gray-900 dark:text-gray-100">
                       {experience.role}
                     </h2>
                     <span className="text-sm text-gray-500 dark:text-gray-400">
@@ -48,7 +48,7 @@ export function Experience() {
                       {experience.location}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                  <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300 mt-2">
                     {experience.description}
                   </p>
                 </div>
@@ -60,10 +60,10 @@ export function Experience() {
                 </h3>
                 <ul className="space-y-3 [&_a]:text-amber-600 [&_a]:dark:text-amber-400 [&_a]:hover:underline">
                   {experience.achievements.map((achievement, i) => (
-                    <li key={i} className="flex items-start">
+                    <li key={`${index}-${i}`} className="flex items-start mt-2">
                       <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
                       <span 
-                        className="text-sm text-gray-600 dark:text-gray-300"
+                        className="text-sm leading-relaxed text-gray-600 dark:text-gray-300"
                         dangerouslySetInnerHTML={{ __html: achievement }}
                       />
                     </li>

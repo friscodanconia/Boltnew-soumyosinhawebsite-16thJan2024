@@ -17,12 +17,12 @@ export function Reading() {
         <header className="mb-12">
           <div className="flex items-center space-x-2 mb-4">
             <Book className="w-6 h-6 text-gray-600 dark:text-gray-400" />
-            <h1 className="text-base font-medium text-gray-900 dark:text-gray-100">Reading</h1>
+            <h1 className="text-lg font-medium leading-snug text-gray-900 dark:text-gray-100">Reading</h1>
           </div>
         </header>
 
         <section className="mb-12" ref={contentRef}>
-          <h2 className="text-base font-medium text-gray-900 dark:text-gray-100 mb-4">
+          <h2 className="text-base font-medium leading-snug text-gray-900 dark:text-gray-100 mb-4">
             {readingData.reading.title}
           </h2>
 
@@ -31,7 +31,7 @@ export function Reading() {
               <li key={i} className="flex items-start">
                 <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
                 <span 
-                  className="text-sm text-gray-600 dark:text-gray-300"
+                  className="text-sm leading-relaxed text-gray-600 dark:text-gray-300"
                   dangerouslySetInnerHTML={{ __html: book }}
                 />
               </li>
