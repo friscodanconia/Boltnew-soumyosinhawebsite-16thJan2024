@@ -1,6 +1,13 @@
 import { createClient } from '@sanity/client';
 import imageUrlBuilder from '@sanity/image-url';
 
+// Log environment variables (without exposing sensitive data)
+console.log('Sanity Config:', {
+  hasProjectId: !!import.meta.env.VITE_SANITY_PROJECT_ID,
+  hasToken: !!import.meta.env.VITE_SANITY_TOKEN,
+  dataset: import.meta.env.VITE_SANITY_DATASET || 'production'
+});
+
 const client = createClient({
   projectId: import.meta.env.VITE_SANITY_PROJECT_ID || '',
   dataset: import.meta.env.VITE_SANITY_DATASET || 'production',
@@ -13,12 +20,14 @@ export const builder = imageUrlBuilder(client);
 
 export async function getPosts() {
   try {
+    console.log('Fetching all posts...');
     const response = await client.fetch(`*[_type == "post"] | order(publishedAt desc) {
       _id,
       title,
       "slug": slug.current,
       publishedAt
     }`);
+    console.log('Received posts:', response?.length || 0);
     return response;
   } catch (error) {
     console.error('Error fetching posts:', error);
@@ -28,6 +37,7 @@ export async function getPosts() {
 
 export async function getPost(slug: string) {
   try {
+    console.log('Fetching single post with slug:', slug);
     const response = await client.fetch(`*[_type == "post" && slug.current == $slug][0] {
       _id,
       title,
@@ -41,6 +51,7 @@ export async function getPost(slug: string) {
         }
       }
     }`, { slug });
+    console.log('Received post data:', response ? 'found' : 'not found');
     return response;
   } catch (error) {
     console.error('Error fetching post:', error);
