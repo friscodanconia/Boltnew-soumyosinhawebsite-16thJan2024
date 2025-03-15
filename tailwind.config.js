@@ -7,18 +7,18 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
-      typography: {
+      typography: ({ theme }) => ({
         DEFAULT: {
           css: {
             maxWidth: 'none',
-            color: '#374151',
+            color: theme('colors.gray.900'),
             p: {
-              color: '#374151',
+              color: theme('colors.gray.900'),
               marginBottom: '1.5rem',
               lineHeight: '1.75',
             },
             'h1, h2, h3': {
-              color: '#111827',
+              color: theme('colors.gray.900'),
               fontWeight: '700',
             },
             h1: {
@@ -32,15 +32,15 @@ export default {
               marginBottom: '0.75rem',
             },
             strong: {
-              color: '#111827',
+              color: theme('colors.gray.900'),
               fontWeight: '700',
             },
             blockquote: {
-              borderLeftColor: '#F59E0B',
+              borderLeftColor: theme('colors.amber.500'),
               borderLeftWidth: '4px',
               paddingLeft: '1rem',
               fontStyle: 'italic',
-              color: '#374151',
+              color: theme('colors.gray.900'),
             },
             ul: {
               listStyleType: 'disc',
@@ -53,30 +53,31 @@ export default {
             li: {
               marginTop: '0.5rem',
               marginBottom: '0.5rem',
+              color: theme('colors.gray.900'),
             },
           },
         },
         dark: {
           css: {
-            color: '#D1D5DB',
+            color: theme('colors.gray.100'),
             p: {
-              color: '#D1D5DB',
+              color: theme('colors.gray.100'),
             },
             'h1, h2, h3': {
-              color: '#F3F4F6',
+              color: theme('colors.white'),
             },
             strong: {
-              color: '#F3F4F6',
+              color: theme('colors.white'),
             },
             blockquote: {
-              color: '#D1D5DB',
+              color: theme('colors.gray.100'),
             },
             li: {
-              color: '#D1D5DB',
+              color: theme('colors.gray.100'),
             },
           },
         },
-      },
+      }),
     },
   },
   plugins: [
