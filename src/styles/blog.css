@@ -1,6 +1,6 @@
 /* Blog post styles */
 .blog-content {
-  color: #374151;
+  color: #1a1a1a;
 }
 
 .blog-content p {
@@ -66,12 +66,21 @@
 /* Dark mode styles */
 @media (prefers-color-scheme: dark) {
   .blog-content {
-    color: #D1D5DB;
+    color: #E5E7EB;
+  }
+
+  .blog-content p,
+  .blog-content li {
+    color: #E5E7EB;
   }
 
   .blog-content h1,
   .blog-content h2,
   .blog-content strong {
-    color: #F3F4F6;
+    color: #F9FAFB;
+  }
+
+  .blog-content blockquote {
+    color: #E5E7EB;
   }
 }
