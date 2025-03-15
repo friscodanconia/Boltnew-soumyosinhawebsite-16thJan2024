@@ -24,58 +24,58 @@ interface Post {
 const components = {
   block: {
     normal: ({children}: any) => (
-      <p className="text-gray-900 dark:text-gray-100 text-base leading-relaxed mb-6">
+      <p className="text-black dark:text-white text-base leading-relaxed mb-6">
         {children}
       </p>
     ),
     h1: ({children}: any) => (
-      <h1 className="text-3xl font-bold text-gray-900 dark:text-white mt-8 mb-4">
+      <h1 className="text-3xl font-bold text-black dark:text-white mt-8 mb-4">
         {children}
       </h1>
     ),
     h2: ({children}: any) => (
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-6 mb-3">
+      <h2 className="text-2xl font-bold text-black dark:text-white mt-6 mb-3">
         {children}
       </h2>
     ),
     blockquote: ({children}: any) => (
-      <blockquote className="border-l-4 border-amber-500 pl-4 py-2 my-6 text-gray-900 dark:text-gray-100 italic">
+      <blockquote className="border-l-4 border-amber-500 pl-4 py-2 my-6 text-black dark:text-white italic">
         {children}
       </blockquote>
     ),
   },
   list: {
     bullet: ({children}: any) => (
-      <ul className="list-disc pl-6 mb-6 space-y-2 text-gray-900 dark:text-gray-100">
+      <ul className="list-disc pl-6 mb-6 space-y-2 text-black dark:text-white">
         {children}
       </ul>
     ),
     number: ({children}: any) => (
-      <ol className="list-decimal pl-6 mb-6 space-y-2 text-gray-900 dark:text-gray-100">
+      <ol className="list-decimal pl-6 mb-6 space-y-2 text-black dark:text-white">
         {children}
       </ol>
     ),
   },
   listItem: {
     bullet: ({children}: any) => (
-      <li className="text-base leading-relaxed text-gray-900 dark:text-gray-100">
+      <li className="text-base leading-relaxed text-black dark:text-white">
         {children}
       </li>
     ),
     number: ({children}: any) => (
-      <li className="text-base leading-relaxed text-gray-900 dark:text-gray-100">
+      <li className="text-base leading-relaxed text-black dark:text-white">
         {children}
       </li>
     ),
   },
   marks: {
     strong: ({children}: any) => (
-      <strong className="font-bold text-gray-900 dark:text-white">
+      <strong className="font-bold text-black dark:text-white">
         {children}
       </strong>
     ),
     em: ({children}: any) => (
-      <em className="italic text-gray-900 dark:text-gray-100">
+      <em className="italic text-black dark:text-white">
         {children}
       </em>
     ),
@@ -141,7 +141,7 @@ export function BlogPost() {
   if (!post) {
     return (
       <div className="max-w-3xl mx-auto p-8">
-        <div className="text-gray-600 dark:text-gray-400">Post not found</div>
+        <div className="text-black dark:text-white">Post not found</div>
       </div>
     );
   }
@@ -159,7 +159,7 @@ export function BlogPost() {
         </Link>
 
         <article>
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
+          <h1 className="text-4xl font-bold text-black dark:text-white mb-8">
             {post.title}
           </h1>
 
@@ -171,7 +171,7 @@ export function BlogPost() {
             />
           )}
 
-          <div className="text-gray-900 dark:text-gray-100">
+          <div className="text-black dark:text-white">
             <PortableText value={post.body} components={components} />
           </div>
         </article>
