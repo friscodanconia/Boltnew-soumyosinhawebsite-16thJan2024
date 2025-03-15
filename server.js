@@ -92,28 +92,24 @@ app.get('/api/posts/:slug', async (req, res) => {
         title,
         "slug": slug.current,
         publishedAt,
-        "author": author->name,
-        mainImage {
-          asset-> {
-            _id,
-            url
-          }
-        },
         body[] {
           ...,
-          _type == 'block' => {
+          _type == "block" => {
             ...,
             children[] {
               ...,
-              _type == 'span' => {
+              _type == "span" => {
                 ...,
                 text
               }
             }
           },
-          _type == 'image' => {
+          _type == "image" => {
             ...,
-            asset->
+            asset-> {
+              _id,
+              url
+            }
           }
         }
       }
@@ -122,6 +118,22 @@ app.get('/api/posts/:slug', async (req, res) => {
     if (!post) {
       console.log('Post not found for slug:', slug);
       return res.status(404).json({ error: 'Post not found' });
+    }
+
+    // Transform image URLs if present
+    if (post.body) {
+      post.body = post.body.map(block => {
+        if (block._type === 'image' && block.asset) {
+          return {
+            ...block,
+            asset: {
+              ...block.asset,
+              url: builder.image(block.asset).url()
+            }
+          };
+        }
+        return block;
+      });
     }
 
     console.log('Fetched post:', post.title);

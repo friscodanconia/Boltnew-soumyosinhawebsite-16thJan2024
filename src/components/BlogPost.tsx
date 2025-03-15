@@ -32,17 +32,11 @@ export function BlogPost() {
 
   const components = {
     block: {
-      normal: ({children, index}: any) => {
-        // Skip the first normal block since it's a repeat of the title
-        if (index === 0) {
-          return null;
-        }
-        return (
-          <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
-            {children}
-          </p>
-        );
-      },
+      normal: ({children}: any) => (
+        <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+          {children}
+        </p>
+      ),
       h1: ({children}: any) => (
         <h1 className="text-base font-medium text-gray-900 dark:text-gray-100 mt-6 mb-3">
           {children}
@@ -102,11 +96,14 @@ export function BlogPost() {
       try {
         setIsLoading(true);
         setError(null);
-        // Use relative URL to automatically use the current domain
         const response = await fetch(`/api/posts/${slug}`);
-        if (!response.ok) throw new Error(`Failed to fetch post: ${response.status}`);
+        if (!response.ok) {
+          console.error('Server response:', await response.text());
+          throw new Error(`Failed to fetch post: ${response.status}`);
+        }
         const data = await response.json();
         if (!data) throw new Error('No post data received');
+        console.log('Received post data:', data); // Debug log
         setPost(data);
       } catch (err: any) {
         console.error('Error fetching post:', err);
@@ -162,9 +159,9 @@ export function BlogPost() {
   }
 
   return (
-    <div className={`min-h-screen ${isDark ? 'dark' : ''} bg-white dark:bg-gray-900`}>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
       {isMobile && <MobileHeader title="Blog" />}
-      <div className="max-w-3xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto p-8">
         <Link
           to="/blog"
           className="inline-flex items-center text-amber-600 dark:text-amber-400 hover:underline mb-6"
@@ -173,12 +170,12 @@ export function BlogPost() {
           Back to blog
         </Link>
 
-        <article>
+        <article className="prose prose-sm dark:prose-invert max-w-none">
           <h1 className="text-base font-medium text-gray-900 dark:text-gray-100 mb-4">
-            {post.title}
+            {post?.title}
           </h1>
 
-          {post.mainImage && (
+          {post?.mainImage && (
             <img
               src={post.mainImage.asset.url}
               alt={post.title}
@@ -186,19 +183,12 @@ export function BlogPost() {
             />
           )}
 
-          <div className="prose prose-sm dark:prose-invert">
+          {post?.body && (
             <PortableText 
               value={post.body} 
               components={components}
-              onMissingComponent={(type: string, props: any) => {
-                if (type === 'block') {
-                  const index = post.body.findIndex((block: any) => block._key === props._key);
-                  return components.block.normal({ ...props, index });
-                }
-                return null;
-              }}
             />
-          </div>
+          )}
         </article>
       </div>
     </div>
