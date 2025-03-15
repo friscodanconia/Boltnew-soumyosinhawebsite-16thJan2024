@@ -5,6 +5,7 @@ import { useMediaQuery } from '../hooks/useMediaQuery';
 import { ArrowLeft } from 'lucide-react';
 import { PortableText } from '@portabletext/react';
 import { useTheme } from '../context/ThemeContext';
+import { getPost } from '../lib/sanity.client';
 
 interface Post {
   _id: string;
@@ -28,7 +29,12 @@ export function BlogPost() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const isMobile = useMediaQuery('(max-width: 768px)');
-  const { isDark } = useTheme();
+  const { } = useTheme();
+
+  // Debug logging
+  useEffect(() => {
+    console.log('BlogPost mounted with slug:', slug);
+  }, [slug]);
 
   const components = {
     block: {
@@ -93,17 +99,23 @@ export function BlogPost() {
 
   useEffect(() => {
     async function fetchPost() {
+      if (!slug) {
+        console.error('No slug provided');
+        setError('No post slug provided');
+        setIsLoading(false);
+        return;
+      }
+      
       try {
         setIsLoading(true);
         setError(null);
-        const response = await fetch(`/api/posts/${slug}`);
-        if (!response.ok) {
-          console.error('Server response:', await response.text());
-          throw new Error(`Failed to fetch post: ${response.status}`);
+        console.log('Fetching post with slug:', slug);
+        const data = await getPost(slug);
+        console.log('Received post data:', data);
+        if (!data) {
+          console.error('No post data received for slug:', slug);
+          throw new Error('Post not found');
         }
-        const data = await response.json();
-        if (!data) throw new Error('No post data received');
-        console.log('Received post data:', data); // Debug log
         setPost(data);
       } catch (err: any) {
         console.error('Error fetching post:', err);
@@ -114,12 +126,6 @@ export function BlogPost() {
     }
     fetchPost();
   }, [slug]);
-
-  // Debug dark mode
-  useEffect(() => {
-    console.log('Dark mode:', isDark);
-    console.log('Dark class on html:', document.documentElement.classList.contains('dark'));
-  }, [isDark]);
 
   if (isLoading) {
     return (
@@ -141,7 +147,7 @@ export function BlogPost() {
     return (
       <div className="max-w-3xl mx-auto p-8">
         <div className="text-red-500 dark:text-red-400">
-          {error}
+          Error: {error}
           <button onClick={() => window.location.reload()} className="ml-2 underline">
             Try again
           </button>
