@@ -4,6 +4,7 @@ import { MobileHeader } from './MobileHeader';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 import { ArrowLeft } from 'lucide-react';
 import { PortableText } from '@portabletext/react';
+import { useTheme } from '../context/ThemeContext';
 
 interface Post {
   _id: string;
@@ -88,6 +89,7 @@ export function BlogPost() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const isMobile = useMediaQuery('(max-width: 768px)');
+  const { isDark } = useTheme();
 
   useEffect(() => {
     async function fetchPost() {
@@ -108,6 +110,12 @@ export function BlogPost() {
     }
     fetchPost();
   }, [slug]);
+
+  // Debug dark mode
+  useEffect(() => {
+    console.log('Dark mode:', isDark);
+    console.log('Dark class on html:', document.documentElement.classList.contains('dark'));
+  }, [isDark]);
 
   if (isLoading) {
     return (
@@ -147,7 +155,7 @@ export function BlogPost() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
+    <div className={`min-h-screen ${isDark ? 'dark' : ''} bg-white dark:bg-gray-900`}>
       {isMobile && <MobileHeader title="Blog" />}
       <div className="max-w-3xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <Link
