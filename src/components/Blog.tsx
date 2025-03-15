@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MobileHeader } from './MobileHeader';
 import { useMediaQuery } from '../hooks/useMediaQuery';
+import { getPosts } from '../lib/sanity.client';
 
 interface Post {
   _id: string;
@@ -31,10 +32,8 @@ export function Blog() {
       try {
         setIsLoading(true);
         setError(null);
-        const response = await fetch('http://localhost:3001/api/posts');
-        if (!response.ok) throw new Error(`Failed to fetch posts: ${response.status}`);
-        const data = await response.json();
-        setPosts(Array.isArray(data) ? data : [data]);
+        const data = await getPosts();
+        setPosts(Array.isArray(data) ? data : []);
       } catch (err: any) {
         console.error('Error fetching posts:', err);
         setError(err.message || 'Failed to load blog posts');
