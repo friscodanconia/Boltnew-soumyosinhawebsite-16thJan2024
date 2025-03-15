@@ -17,7 +17,7 @@ const port = 3001;
 
 // Configure CORS to allow requests from your React app
 app.use(cors({
-  origin: '*', // Allow all origins during development
+  origin: ['http://localhost:5173', 'https://soumyosinha.com'],
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
@@ -156,6 +156,18 @@ app.get('/api/posts/:slug', async (req, res) => {
   } catch (error) {
     console.error('Error fetching post:', error);
     res.status(500).json({ error: 'Failed to fetch post', details: error.message });
+  }
+});
+
+// Serve static files from the dist directory
+app.use(express.static('dist'));
+
+// Handle client-side routing by serving index.html for all non-API routes
+app.get('*', (req, res, next) => {
+  if (req.url.startsWith('/api/')) {
+    next();
+  } else {
+    res.sendFile('dist/index.html', { root: __dirname });
   }
 });
 
