@@ -17,7 +17,7 @@ const port = 3001;
 
 // Configure CORS to allow requests from your React app
 app.use(cors({
-  origin: 'http://localhost:5187',
+  origin: '*', // Allow all origins during development
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
@@ -29,19 +29,27 @@ const client = createClient({
   dataset: 'production',
   apiVersion: '2024-01-26',
   useCdn: false,
-  token: process.env.SANITY_TOKEN || process.env.VITE_SANITY_TOKEN,
+  token: 'skqkhmxBIOywCpNylr4YCtIf4nQLtOXYQw5UH4L4LlzwRynIAE5fPCMwuykEyHZlOEYXpxGOaqdHqbJqjHQf7ii7faSHb2QCGWFJlHVguCkAZZnmwvbWrVIb7H8JrUs1p1hTttDGJYQNDZoMzn6vlpDdx5J8SjN9I66JGSYVRUu683n0Oh5c',
   perspective: 'published'
 });
 
 // Initialize image URL builder
 const builder = imageUrlBuilder(client);
 
-// Debug route to check environment variables
-app.get('/api/debug', (req, res) => {
-  res.json({
-    hasToken: !!process.env.SANITY_TOKEN || !!process.env.VITE_SANITY_TOKEN,
-    environment: process.env.NODE_ENV
-  });
+// Debug route to check Sanity connection
+app.get('/api/debug', async (req, res) => {
+  try {
+    const testQuery = await client.fetch('*[_type == "post"][0]');
+    res.json({
+      connected: true,
+      sampleData: testQuery
+    });
+  } catch (error) {
+    res.status(500).json({
+      connected: false,
+      error: error.message
+    });
+  }
 });
 
 // API endpoint to fetch all posts
@@ -53,44 +61,35 @@ app.get('/api/posts', async (req, res) => {
       title,
       "slug": slug.current,
       publishedAt,
-      excerpt,
+      "excerpt": pt::text(body[_type == "block"][0..1]),
       "author": author->name,
-      "categories": *[_type == "category" && references(^._id)].title,
+      "categories": categories[]->title,
       mainImage {
         asset-> {
           _id,
           url
         }
-      },
-      body[] {
-        ...,
-        _type == 'block' => {
-          ...,
-          children[] {
-            ...,
-            _type == 'span' => {
-              ...,
-              text
-            }
-          }
-        },
-        _type == 'image' => {
-          ...,
-          asset->
-        }
       }
     }`);
 
-    console.log('Posts fetched:', JSON.stringify(posts, null, 2));
+    console.log(`Found ${posts.length} posts`);
 
-    // Transform image URLs
-    posts.forEach(post => {
-      if (post.mainImage && post.mainImage.asset) {
-        post.mainImage.asset.url = builder.image(post.mainImage.asset).url();
-      }
-    });
+    // Transform image URLs and clean up data
+    const transformedPosts = posts.map(post => ({
+      ...post,
+      excerpt: post.excerpt || null,
+      mainImage: post.mainImage ? {
+        ...post.mainImage,
+        asset: {
+          ...post.mainImage.asset,
+          url: builder.image(post.mainImage.asset).url()
+        }
+      } : null,
+      categories: post.categories || [],
+      author: post.author || 'Anonymous'
+    }));
 
-    res.json(posts);
+    res.json(transformedPosts);
   } catch (error) {
     console.error('Error fetching posts:', error);
     res.status(500).json({ error: 'Failed to fetch posts', details: error.message });
@@ -122,11 +121,15 @@ app.get('/api/posts/:slug', async (req, res) => {
           ...,
           _type == 'block' => {
             ...,
-            children[] {
+            // Skip the first block if it matches the title
+            defined(style) && style == "normal" && _key != body[0]._key => {
               ...,
-              _type == 'span' => {
+              children[] {
                 ...,
-                text
+                _type == 'span' => {
+                  ...,
+                  text
+                }
               }
             }
           },
@@ -159,5 +162,5 @@ app.get('/api/posts/:slug', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
   console.log('Environment:', process.env.NODE_ENV);
-  console.log('Has Sanity token:', !!process.env.SANITY_TOKEN || !!process.env.VITE_SANITY_TOKEN);
+  console.log('Has Sanity token:', true);
 });

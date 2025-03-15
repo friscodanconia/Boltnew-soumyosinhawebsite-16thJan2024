@@ -22,67 +22,6 @@ interface Post {
   };
 }
 
-const components = {
-  block: {
-    normal: ({children}: any) => (
-      <p className="text-black dark:text-white text-base leading-relaxed mb-6">
-        {children}
-      </p>
-    ),
-    h1: ({children}: any) => (
-      <h1 className="text-3xl font-bold text-black dark:text-white mt-8 mb-4">
-        {children}
-      </h1>
-    ),
-    h2: ({children}: any) => (
-      <h2 className="text-2xl font-bold text-black dark:text-white mt-6 mb-3">
-        {children}
-      </h2>
-    ),
-    blockquote: ({children}: any) => (
-      <blockquote className="border-l-4 border-amber-500 pl-4 py-2 my-6 text-black dark:text-white italic">
-        {children}
-      </blockquote>
-    ),
-  },
-  list: {
-    bullet: ({children}: any) => (
-      <ul className="list-disc pl-6 mb-6 space-y-2 text-black dark:text-white">
-        {children}
-      </ul>
-    ),
-    number: ({children}: any) => (
-      <ol className="list-decimal pl-6 mb-6 space-y-2 text-black dark:text-white">
-        {children}
-      </ol>
-    ),
-  },
-  listItem: {
-    bullet: ({children}: any) => (
-      <li className="text-base leading-relaxed text-black dark:text-white">
-        {children}
-      </li>
-    ),
-    number: ({children}: any) => (
-      <li className="text-base leading-relaxed text-black dark:text-white">
-        {children}
-      </li>
-    ),
-  },
-  marks: {
-    strong: ({children}: any) => (
-      <strong className="font-bold text-black dark:text-white">
-        {children}
-      </strong>
-    ),
-    em: ({children}: any) => (
-      <em className="italic text-black dark:text-white">
-        {children}
-      </em>
-    ),
-  },
-};
-
 export function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<Post | null>(null);
@@ -90,6 +29,73 @@ export function BlogPost() {
   const [error, setError] = useState<string | null>(null);
   const isMobile = useMediaQuery('(max-width: 768px)');
   const { isDark } = useTheme();
+
+  const components = {
+    block: {
+      normal: ({children, index}: any) => {
+        // Skip the first normal block since it's a repeat of the title
+        if (index === 0) {
+          return null;
+        }
+        return (
+          <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+            {children}
+          </p>
+        );
+      },
+      h1: ({children}: any) => (
+        <h1 className="text-base font-medium text-gray-900 dark:text-gray-100 mt-6 mb-3">
+          {children}
+        </h1>
+      ),
+      h2: ({children}: any) => (
+        <h2 className="text-base font-medium text-gray-900 dark:text-gray-100 mt-4 mb-2">
+          {children}
+        </h2>
+      ),
+      blockquote: ({children}: any) => (
+        <blockquote className="border-l-4 border-amber-500 pl-4 py-2 my-4 text-sm text-gray-600 dark:text-gray-300 italic">
+          {children}
+        </blockquote>
+      ),
+    },
+    list: {
+      bullet: ({children}: any) => (
+        <ul className="list-disc pl-6 mb-4 space-y-2 text-sm text-gray-600 dark:text-gray-300">
+          {children}
+        </ul>
+      ),
+      number: ({children}: any) => (
+        <ol className="list-decimal pl-6 mb-4 space-y-2 text-sm text-gray-600 dark:text-gray-300">
+          {children}
+        </ol>
+      ),
+    },
+    listItem: {
+      bullet: ({children}: any) => (
+        <li className="text-sm text-gray-600 dark:text-gray-300">
+          {children}
+        </li>
+      ),
+      number: ({children}: any) => (
+        <li className="text-sm text-gray-600 dark:text-gray-300">
+          {children}
+        </li>
+      ),
+    },
+    marks: {
+      strong: ({children}: any) => (
+        <strong className="font-medium text-gray-900 dark:text-gray-100">
+          {children}
+        </strong>
+      ),
+      em: ({children}: any) => (
+        <em className="italic text-gray-600 dark:text-gray-300">
+          {children}
+        </em>
+      ),
+    },
+  };
 
   useEffect(() => {
     async function fetchPost() {
@@ -161,14 +167,14 @@ export function BlogPost() {
       <div className="max-w-3xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <Link
           to="/blog"
-          className="inline-flex items-center text-amber-600 dark:text-amber-400 hover:underline mb-8"
+          className="inline-flex items-center text-amber-600 dark:text-amber-400 hover:underline mb-6"
         >
           <ArrowLeft className="w-4 h-4 mr-1" />
           Back to blog
         </Link>
 
         <article>
-          <h1 className="text-4xl font-bold text-black dark:text-white mb-8">
+          <h1 className="text-base font-medium text-gray-900 dark:text-gray-100 mb-4">
             {post.title}
           </h1>
 
@@ -176,12 +182,22 @@ export function BlogPost() {
             <img
               src={post.mainImage.asset.url}
               alt={post.title}
-              className="w-full rounded-lg mb-8 object-cover"
+              className="w-full rounded-lg mb-6 object-cover"
             />
           )}
 
-          <div className="text-black dark:text-white">
-            <PortableText value={post.body} components={components} />
+          <div className="prose prose-sm dark:prose-invert">
+            <PortableText 
+              value={post.body} 
+              components={components}
+              onMissingComponent={(type: string, props: any) => {
+                if (type === 'block') {
+                  const index = post.body.findIndex((block: any) => block._key === props._key);
+                  return components.block.normal({ ...props, index });
+                }
+                return null;
+              }}
+            />
           </div>
         </article>
       </div>
