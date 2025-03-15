@@ -28,8 +28,8 @@ const client = createClient({
   projectId: 'i4pcg2lx',
   dataset: 'production',
   apiVersion: '2024-01-26',
-  useCdn: false,
-  token: 'skqkhmxBIOywCpNylr4YCtIf4nQLtOXYQw5UH4L4LlzwRynIAE5fPCMwuykEyHZlOEYXpxGOaqdHqbJqjHQf7ii7faSHb2QCGWFJlHVguCkAZZnmwvbWrVIb7H8JrUs1p1hTttDGJYQNDZoMzn6vlpDdx5J8SjN9I66JGSYVRUu683n0Oh5c',
+  useCdn: true, // Enable CDN for better performance
+  token: process.env.SANITY_TOKEN || 'skqkhmxBIOywCpNylr4YCtIf4nQLtOXYQw5UH4L4LlzwRynIAE5fPCMwuykEyHZlOEYXpxGOaqdHqbJqjHQf7ii7faSHb2QCGWFJlHVguCkAZZnmwvbWrVIb7H8JrUs1p1hTttDGJYQNDZoMzn6vlpDdx5J8SjN9I66JGSYVRUu683n0Oh5c',
   perspective: 'published'
 });
 
@@ -73,23 +73,7 @@ app.get('/api/posts', async (req, res) => {
     }`);
 
     console.log(`Found ${posts.length} posts`);
-
-    // Transform image URLs and clean up data
-    const transformedPosts = posts.map(post => ({
-      ...post,
-      excerpt: post.excerpt || null,
-      mainImage: post.mainImage ? {
-        ...post.mainImage,
-        asset: {
-          ...post.mainImage.asset,
-          url: builder.image(post.mainImage.asset).url()
-        }
-      } : null,
-      categories: post.categories || [],
-      author: post.author || 'Anonymous'
-    }));
-
-    res.json(transformedPosts);
+    res.json(posts);
   } catch (error) {
     console.error('Error fetching posts:', error);
     res.status(500).json({ error: 'Failed to fetch posts', details: error.message });
@@ -108,9 +92,7 @@ app.get('/api/posts/:slug', async (req, res) => {
         title,
         "slug": slug.current,
         publishedAt,
-        excerpt,
         "author": author->name,
-        "categories": *[_type == "category" && references(^._id)].title,
         mainImage {
           asset-> {
             _id,
@@ -121,15 +103,11 @@ app.get('/api/posts/:slug', async (req, res) => {
           ...,
           _type == 'block' => {
             ...,
-            // Skip the first block if it matches the title
-            defined(style) && style == "normal" && _key != body[0]._key => {
+            children[] {
               ...,
-              children[] {
+              _type == 'span' => {
                 ...,
-                _type == 'span' => {
-                  ...,
-                  text
-                }
+                text
               }
             }
           },
@@ -146,12 +124,7 @@ app.get('/api/posts/:slug', async (req, res) => {
       return res.status(404).json({ error: 'Post not found' });
     }
 
-    // Transform the mainImage URL if it exists
-    if (post.mainImage && post.mainImage.asset) {
-      post.mainImage.asset.url = builder.image(post.mainImage.asset).url();
-    }
-
-    console.log('Fetched post:', JSON.stringify(post, null, 2));
+    console.log('Fetched post:', post.title);
     res.json(post);
   } catch (error) {
     console.error('Error fetching post:', error);
