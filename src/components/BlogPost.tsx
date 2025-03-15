@@ -4,7 +4,6 @@ import { MobileHeader } from './MobileHeader';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 import { ArrowLeft } from 'lucide-react';
 import { PortableText } from '@portabletext/react';
-import '../styles/blog.css';
 
 interface Post {
   _id: string;
@@ -24,22 +23,62 @@ interface Post {
 
 const components = {
   block: {
-    normal: ({children}: any) => <p>{children}</p>,
-    h1: ({children}: any) => <h1>{children}</h1>,
-    h2: ({children}: any) => <h2>{children}</h2>,
-    blockquote: ({children}: any) => <blockquote>{children}</blockquote>,
+    normal: ({children}: any) => (
+      <p className="text-gray-900 dark:text-gray-100 text-base leading-relaxed mb-6">
+        {children}
+      </p>
+    ),
+    h1: ({children}: any) => (
+      <h1 className="text-3xl font-bold text-gray-900 dark:text-white mt-8 mb-4">
+        {children}
+      </h1>
+    ),
+    h2: ({children}: any) => (
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-6 mb-3">
+        {children}
+      </h2>
+    ),
+    blockquote: ({children}: any) => (
+      <blockquote className="border-l-4 border-amber-500 pl-4 py-2 my-6 text-gray-900 dark:text-gray-100 italic">
+        {children}
+      </blockquote>
+    ),
   },
   list: {
-    bullet: ({children}: any) => <ul>{children}</ul>,
-    number: ({children}: any) => <ol>{children}</ol>,
+    bullet: ({children}: any) => (
+      <ul className="list-disc pl-6 mb-6 space-y-2 text-gray-900 dark:text-gray-100">
+        {children}
+      </ul>
+    ),
+    number: ({children}: any) => (
+      <ol className="list-decimal pl-6 mb-6 space-y-2 text-gray-900 dark:text-gray-100">
+        {children}
+      </ol>
+    ),
   },
   listItem: {
-    bullet: ({children}: any) => <li>{children}</li>,
-    number: ({children}: any) => <li>{children}</li>,
+    bullet: ({children}: any) => (
+      <li className="text-base leading-relaxed text-gray-900 dark:text-gray-100">
+        {children}
+      </li>
+    ),
+    number: ({children}: any) => (
+      <li className="text-base leading-relaxed text-gray-900 dark:text-gray-100">
+        {children}
+      </li>
+    ),
   },
   marks: {
-    strong: ({children}: any) => <strong>{children}</strong>,
-    em: ({children}: any) => <em>{children}</em>,
+    strong: ({children}: any) => (
+      <strong className="font-bold text-gray-900 dark:text-white">
+        {children}
+      </strong>
+    ),
+    em: ({children}: any) => (
+      <em className="italic text-gray-900 dark:text-gray-100">
+        {children}
+      </em>
+    ),
   },
 };
 
@@ -120,7 +159,7 @@ export function BlogPost() {
         </Link>
 
         <article>
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-8">
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
             {post.title}
           </h1>
 
@@ -132,7 +171,7 @@ export function BlogPost() {
             />
           )}
 
-          <div className="blog-content">
+          <div className="text-gray-900 dark:text-gray-100">
             <PortableText value={post.body} components={components} />
           </div>
         </article>
