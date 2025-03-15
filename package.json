@@ -6,10 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "vercel-build": "npm run build && cp server.js dist/",
+    "vercel-build": "npm run build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "server": "node server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "@portabletext/react": "^3.2.1",
