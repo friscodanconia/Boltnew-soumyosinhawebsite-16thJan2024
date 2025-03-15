@@ -1,33 +1,39 @@
-import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { categories } from '../data/sidebarData';
+import { Link, useLocation } from 'react-router-dom';
 
 export function Sidebar() {
-  const navigate = useNavigate();
   const location = useLocation();
 
+  const isActive = (path: string) => {
+    return location.pathname === path;
+  };
+
+  const navItems = [
+    { path: '/about', label: 'About' },
+    { path: '/experience', label: 'Experience' },
+    { path: '/projects', label: 'Projects' },
+    { path: '/reading', label: 'Reading' },
+    { path: '/contact', label: 'Contact' },
+  ];
+
   return (
-    <aside className="w-64 md:w-48 lg:w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700">
-      <nav className="p-4">
-        {categories.map((category, index) => {
-          const Icon = category.icon;
-          const isActive = location.pathname === category.link;
-          
-          return (
-            <button
-              key={index}
-              onClick={() => navigate(category.link)}
-              className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${
-                isActive 
-                  ? 'text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/10' 
-                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
-              }`}
-            >
-              <Icon className="w-5 h-5" />
-              <span className="font-medium md:text-sm lg:text-base">{category.label}</span>
-            </button>
-          );
-        })}
+    <aside className="w-48 border-r border-gray-200 dark:border-gray-800 p-4 flex flex-col">
+      <nav className="flex-1">
+        <ul className="space-y-2">
+          {navItems.map((item) => (
+            <li key={item.path}>
+              <Link
+                to={item.path}
+                className={`block px-2 py-1 text-sm rounded-md transition-colors ${
+                  isActive(item.path)
+                    ? 'text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20'
+                    : 'text-gray-600 dark:text-gray-300 hover:text-amber-600 dark:hover:text-amber-400'
+                }`}
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </nav>
     </aside>
   );
