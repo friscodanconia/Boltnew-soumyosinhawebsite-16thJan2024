@@ -70,8 +70,8 @@ export const projectsData = {
       {
         id: "ai-chatbot",
         slug: "ai-chatbot",
-        title: "AI-powered Chatbot",
-        description: "An intelligent chatbot using OpenAI's API for natural conversations",
+        title: "Your AI Guide",
+        description: "A one stop solution that upgrades your AI skills",
         thumbnail: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80",
         technologies: ["OpenAI API", "Node.js", "React"],
         links: {
