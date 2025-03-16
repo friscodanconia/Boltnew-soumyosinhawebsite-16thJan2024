@@ -87,12 +87,12 @@ export const projectsData = {
           <div class="space-y-8">
             <img 
               src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80"
-              alt="AI Chatbot"
+              alt="Your AI Guide"
               class="w-full h-64 object-cover rounded-lg"
             />
             
             <p>
-              An advanced AI chatbot that leverages OpenAI's API to provide natural, context-aware conversations with users.
+              I built <a href="https://www.nestor.guide/" target="_blank" rel="noopener noreferrer">nestor.guide</a>. Nestor simplifies your journey through the rapidly evolving world of AI. The AI landscape changes daily, bringing new tools and models. With so much information available, it's hard to know where to focus. I curated a collection of essential tools, resources, and insights to help you navigate the space effectively.
             </p>
 
             <div class="aspect-w-16 aspect-h-9 mb-8">
