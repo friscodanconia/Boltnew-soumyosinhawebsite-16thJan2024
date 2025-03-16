@@ -143,7 +143,7 @@ export const projectsData = {
             />
             
             <p>
-              I consulted with a client on importance of product imagery and its impact on customer experience and visitor conversion. They agreed it makes sense to invest, but also pointed out the cost behind this process, especially considering that seasonal variations mean constant investments in product imagery. I agreed to investigate AI solutions that can help in this process.
+              I consulted with a client on importance of product imagery and it's impact on customer experience and visitor conversion. They agreed it makes sense to invest, but also pointed out the cost behind this process, especially considering that seasonal variations mean constant investments in product imagery. I agreed to investigate AI solutions that can help in this process.
             </p>
 
             <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">The Why</h2>
