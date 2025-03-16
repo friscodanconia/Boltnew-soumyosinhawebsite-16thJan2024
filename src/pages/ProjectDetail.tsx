@@ -54,7 +54,7 @@ export function ProjectDetail() {
           <div className="space-y-12 md:space-y-16">
             <section>
               <h2 className="text-base font-medium leading-snug text-gray-900 dark:text-gray-100 mb-4 md:mb-5">Overview</h2>
-              <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+              <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300 pl-1">
                 {project.slug === 'ai-chatbot' ? (
                   <>
                     I built <a href="https://www.nestor.guide/" target="_blank" rel="noopener noreferrer" className="text-amber-600 dark:text-amber-400 hover:underline">nestor.guide</a>. Nestor simplifies your journey through the rapidly evolving world of AI. The AI landscape changes daily, bringing new tools and models. With so much information available, it's hard to know where to focus. I curated a collection of essential tools, resources, and insights to help you navigate the space effectively.
@@ -71,7 +71,7 @@ export function ProjectDetail() {
 
             <section>
               <h2 className="text-base font-medium leading-snug text-gray-900 dark:text-gray-100 mb-4 md:mb-5">The Why</h2>
-              <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+              <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300 pl-1">
                 {project.slug === 'ai-chatbot' ? (
                   <>
                     Let's face it, the AI world is changing rapidly. There are new model developments every day, building tools need technical tinkering, some are behind the paywall, these are non-deterministic (your same inputs will have different results every time). People are busy and not everyone has the time or wants to know how the sausage making works. But people do want to learn about AI and use it to be more productive. Nestor does that by making it easy to understand, learn, and integrate AI in their lives.
@@ -85,7 +85,7 @@ export function ProjectDetail() {
             <section>
               <h2 className="text-base font-medium leading-snug text-gray-900 dark:text-gray-100 mb-4 md:mb-5">Key Features</h2>
               {project.slug === 'ai-chatbot' ? (
-                <ul className="space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                <ul className="space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300 pl-1">
                   <li className="flex items-start">
                     <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
                     <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Top No-Code Tools</span>
@@ -108,7 +108,7 @@ export function ProjectDetail() {
                   </li>
                 </ul>
               ) : (
-                <ul className="space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                <ul className="space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300 pl-1">
                   {project.features?.map((feature, index) => (
                     <li key={index} className="flex items-start">
                       <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
@@ -122,7 +122,7 @@ export function ProjectDetail() {
             <section>
               <h2 className="text-base font-medium leading-snug text-gray-900 dark:text-gray-100 mb-4 md:mb-5">Technologies Used</h2>
               {project.slug === 'ai-chatbot' ? (
-                <ul className="space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                <ul className="space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300 pl-1">
                   <li className="flex items-start">
                     <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
                     <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Bolt.new</span>
@@ -145,7 +145,7 @@ export function ProjectDetail() {
                   </li>
                 </ul>
               ) : (
-                <ul className="space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                <ul className="space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300 pl-1">
                   <li className="flex items-start">
                     <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
                     <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">TMDB API</span>
