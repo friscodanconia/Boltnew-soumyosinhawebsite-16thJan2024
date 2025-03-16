@@ -72,46 +72,102 @@ export function ProjectDetail() {
             <section>
               <h2 className="text-base font-medium leading-snug text-gray-900 dark:text-gray-100 mb-4 md:mb-5">The Why</h2>
               <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-                {project.why || "I like movies, but a bit frustrated by the increasingly complicated user journey of IMDB. I wanted to build a simple user experience where you can enter the name of movie, actor, actress and get relevant results. This tool is free of charge and using the TMDB API to get results and uses some custom ranking logic to display results."}
+                {project.slug === 'ai-chatbot' ? (
+                  <>
+                    Let's face it, the AI world is changing rapidly. There are new model developments every day, building tools need technical tinkering, some are behind the paywall, these are non-deterministic (your same inputs will have different results every time). People are busy and not everyone has the time or wants to know how the sausage making works. But people do want to learn about AI and use it to be more productive. Nestor does that by making it easy to understand, learn, and integrate AI in their lives.
+                  </>
+                ) : (
+                  project.why || "I like movies, but a bit frustrated by the increasingly complicated user journey of IMDB. I wanted to build a simple user experience where you can enter the name of movie, actor, actress and get relevant results. This tool is free of charge and using the TMDB API to get results and uses some custom ranking logic to display results."
+                )}
               </p>
             </section>
 
             <section>
               <h2 className="text-base font-medium leading-snug text-gray-900 dark:text-gray-100 mb-4 md:mb-5">Key Features</h2>
-              <ul className="space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-                {project.features?.map((feature, index) => (
-                  <li key={index} className="flex items-start">
+              {project.slug === 'ai-chatbot' ? (
+                <ul className="space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                  <li className="flex items-start">
                     <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
-                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">{feature}</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Top No-Code Tools</span>
                   </li>
-                ))}
-              </ul>
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">How to build Agents</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Must Try Apps</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">How to use AI in Marketing</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">And many more...</span>
+                  </li>
+                </ul>
+              ) : (
+                <ul className="space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                  {project.features?.map((feature, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                      <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </section>
 
             <section>
               <h2 className="text-base font-medium leading-snug text-gray-900 dark:text-gray-100 mb-4 md:mb-5">Technologies Used</h2>
-              <ul className="space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-                <li className="flex items-start">
-                  <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
-                  <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">TMDB API</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
-                  <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Visual Code</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
-                  <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Claude</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
-                  <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Deepseek (for troubleshooting help)</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
-                  <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Extensive debugging (most time-consuming aspect)</span>
-                </li>
-              </ul>
+              {project.slug === 'ai-chatbot' ? (
+                <ul className="space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Bolt.new</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Claude Sonnet</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Vercel for deployment</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Custom design and debugging</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Windsurf (I found it better than Cursor)</span>
+                  </li>
+                </ul>
+              ) : (
+                <ul className="space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">TMDB API</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Visual Code</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Claude</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Deepseek (for troubleshooting help)</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Extensive debugging (most time-consuming aspect)</span>
+                  </li>
+                </ul>
+              )}
             </section>
           </div>
         </article>
