@@ -119,42 +119,55 @@ export const projectsData = {
         `
       },
       {
-        id: "task-manager",
-        slug: "task-manager",
-        title: "Task Manager Application",
-        description: "A modern task management application with real-time collaboration features",
-        thumbnail: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&q=80",
-        technologies: ["React", "Firebase", "Material-UI"],
+        id: "product-imagery-fashion",
+        slug: "product-imagery-fashion",
+        title: "Product Imagery in Fashion",
+        description: "How to simplify product imagery using AI tools",
+        thumbnail: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&q=80",
+        technologies: ["Google 2.0 Flash Experimental", "Hugging Face hosted model"],
         links: {
-          demo: "https://taskmanager-demo.com",
-          github: "https://github.com/example/task-manager"
+          demo: "/product-imagery-gallery"
         },
         features: [
-          "Real-time collaboration",
-          "Task prioritization",
-          "Team management",
-          "Progress tracking"
+          "Image generation",
+          "Seed image input",
+          "Prompt engineering for fine tuning"
         ],
+        why: "Multi modal models are getting better every week. While LLM's are non deterministic still, they have found ways to make it better. You can add reference images, brand identity, character infusion to create upper and lower bounds on quality. I recently used a combination of experimental models to input one model image and it created five different variations across color and style.",
         content: `
           <div class="space-y-8">
             <img 
-              src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&q=80"
-              alt="Task Manager"
+              src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&q=80"
+              alt="Product Imagery in Fashion"
               class="w-full h-64 object-cover rounded-lg"
             />
             
             <p>
-              A collaborative task management platform designed for teams to organize, track, and complete projects efficiently.
+              I consulted with a client on importance of product imagery and it's impact on customer experience and visitor conversion. They agreed it makes sense to invest, but also pointed out the cost behind this process, especially considering that seasonal variations mean constant investments in product imagery. I agreed to investigate AI solutions that can help in this process.
             </p>
 
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Features</h2>
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">The Why</h2>
+            
+            <p>
+              Multi modal models are getting better every week. While LLM's are non deterministic still, they have found ways to make it better. You can add reference images, brand identity, character infusion to create upper and lower bounds on quality. I recently used a combination of experimental models to input one model image and it created five different variations across color and style. You can check them <a href="/product-imagery-gallery" class="text-amber-600 dark:text-amber-400 hover:underline">here</a>.
+            </p>
+
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Key Features</h2>
             
             <div class="space-y-4">
               <ul class="list-disc pl-6 space-y-2">
-                <li>Real-time updates and collaboration</li>
-                <li>Task assignment and tracking</li>
-                <li>Team communication tools</li>
-                <li>Progress visualization</li>
+                <li>Image generation</li>
+                <li>Seed image input</li>
+                <li>Prompt engineering for fine tuning</li>
+              </ul>
+            </div>
+
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Technologies Used</h2>
+            
+            <div class="space-y-4">
+              <ul class="list-disc pl-6 space-y-2">
+                <li>Google 2.0 Flash Experimental</li>
+                <li>Hugging Face hosted model</li>
               </ul>
             </div>
           </div>

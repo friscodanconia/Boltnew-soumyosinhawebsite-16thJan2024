@@ -6,6 +6,7 @@ import { AboutMe } from './components/AboutMe';
 import { Experience } from './components/Experience';
 import { Projects } from './components/Projects';
 import { ProjectDetail } from './pages/ProjectDetail';
+import { ProductImageryGallery } from './pages/ProductImageryGallery';
 import { Reading } from './components/Reading';
 import { Contact } from './components/Contact';
 import { MobileLanding } from './components/MobileLanding';
@@ -32,6 +33,7 @@ function AppContent() {
               <Route path="/experience" element={<Experience />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/projects/:slug" element={<ProjectDetail />} />
+              <Route path="/product-imagery-gallery" element={<ProductImageryGallery />} />
               <Route path="/reading" element={<Reading />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
