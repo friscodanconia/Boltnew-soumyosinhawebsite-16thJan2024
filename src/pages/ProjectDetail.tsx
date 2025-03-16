@@ -80,33 +80,28 @@ export function ProjectDetail() {
 
             <section>
               <h2 className="text-base font-medium leading-snug text-gray-900 dark:text-gray-100 mb-4 md:mb-5">Technologies Used</h2>
-              <div className="flex flex-wrap gap-2">
-                <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300 mb-4">
-                  This project used:
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
-                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">TMDB API</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
-                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Visual Code</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
-                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Claude</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
-                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Deepseek (for troubleshooting help)</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
-                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Extensive debugging (most time-consuming aspect)</span>
-                  </li>
-                </ul>
-              </div>
+              <ul className="space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                <li className="flex items-start">
+                  <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                  <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">TMDB API</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                  <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Visual Code</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                  <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Claude</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                  <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Deepseek (for troubleshooting help)</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                  <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">Extensive debugging (most time-consuming aspect)</span>
+                </li>
+              </ul>
             </section>
           </div>
         </article>
