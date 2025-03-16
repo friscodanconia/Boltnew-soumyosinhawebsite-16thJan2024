@@ -37,6 +37,12 @@ export function ProductImageryGallery() {
       src: "/assets/images/fashion-variation4.jpeg",
       alt: "Fashion Model Variation 5",
       caption: "AI-generated variation - background change"
+    },
+    {
+      id: 6,
+      src: "/assets/images/fashion-variation5.jpeg",
+      alt: "Fashion Model Variation 6",
+      caption: "AI-generated variation - lighting effect"
     }
   ];
 
