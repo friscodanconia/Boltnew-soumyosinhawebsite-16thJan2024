@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { Briefcase } from 'lucide-react';
 import { experienceData } from '../data/experienceData';
 import { MobileHeader } from './MobileHeader';

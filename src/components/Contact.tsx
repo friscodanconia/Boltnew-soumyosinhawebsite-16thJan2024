@@ -1,4 +1,3 @@
-import React from 'react';
 import { Mail } from 'lucide-react';
 import { contactData } from '../data/contactData';
 import { MobileHeader } from './MobileHeader';

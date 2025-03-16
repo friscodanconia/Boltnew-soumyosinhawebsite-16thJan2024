@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { Book } from 'lucide-react';
 import { readingData } from '../data/readingData';
 import { MobileHeader } from './MobileHeader';
@@ -25,6 +25,10 @@ export function Reading() {
           <h2 className="text-base font-medium leading-snug text-gray-900 dark:text-gray-100 mb-4">
             {readingData.reading.title}
           </h2>
+
+          <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300 mb-6">
+            A collection of books that have shaped my thinking.
+          </p>
 
           <ul className="space-y-3 [&_a]:text-amber-600 [&_a]:dark:text-amber-400 [&_a]:hover:underline">
             {readingData.reading.books.map((book, i) => (
