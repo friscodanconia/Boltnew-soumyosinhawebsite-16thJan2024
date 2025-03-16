@@ -55,14 +55,24 @@ export function ProjectDetail() {
             <section>
               <h2 className="text-base font-medium leading-snug text-gray-900 dark:text-gray-100 mb-4 md:mb-5">Overview</h2>
               <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-                A comprehensive movie information site built using AI tools like Claude, Bolt.new and publicly available APIs from TMDB. A user can enter movie related terms and will be delivered relevant search results. You can check out the experience at <a href="https://www.cinemagic.me" target="_blank" rel="noopener noreferrer" className="text-amber-600 dark:text-amber-400 hover:underline">cinemagic.me</a>
+                {project.slug === 'ai-chatbot' ? (
+                  <>
+                    I built <a href="https://www.nestor.guide/" target="_blank" rel="noopener noreferrer" className="text-amber-600 dark:text-amber-400 hover:underline">nestor.guide</a>. Nestor simplifies your journey through the rapidly evolving world of AI. The AI landscape changes daily, bringing new tools and models. With so much information available, it's hard to know where to focus. I curated a collection of essential tools, resources, and insights to help you navigate the space effectively.
+                  </>
+                ) : project.slug === 'movie-info-site' ? (
+                  <>
+                    A comprehensive movie information site built using AI tools like Claude, Bolt.new and publicly available APIs from TMDB. A user can enter movie related terms and will be delivered relevant search results. You can check out the experience at <a href="https://www.cinemagic.me" target="_blank" rel="noopener noreferrer" className="text-amber-600 dark:text-amber-400 hover:underline">cinemagic.me</a>
+                  </>
+                ) : (
+                  project.description
+                )}
               </p>
             </section>
 
             <section>
               <h2 className="text-base font-medium leading-snug text-gray-900 dark:text-gray-100 mb-4 md:mb-5">The Why</h2>
               <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-                I like movies, but a bit frustrated by the increasingly complicated user journey of IMDB. I wanted to build a simple user experience where you can enter the name of movie, actor, actress and get relevant results. This tool is free of charge and using the TMDB API to get results and uses some custom ranking logic to display results.
+                {project.why || "I like movies, but a bit frustrated by the increasingly complicated user journey of IMDB. I wanted to build a simple user experience where you can enter the name of movie, actor, actress and get relevant results. This tool is free of charge and using the TMDB API to get results and uses some custom ranking logic to display results."}
               </p>
             </section>
 
