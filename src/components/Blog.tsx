@@ -68,7 +68,7 @@ export function Blog() {
         {isMobile && <MobileHeader title="Blog" />}
         <div className="max-w-3xl mx-auto p-4 sm:p-6 lg:p-8">
           <div className="bg-red-50 dark:bg-red-900/20 text-red-500 dark:text-red-400 p-4 rounded-lg">
-            {error}
+            <p className="text-red-500 dark:text-red-400">{error}</p>
             <button onClick={() => window.location.reload()} className="ml-2 underline">
               Try again
             </button>
@@ -99,6 +99,11 @@ export function Blog() {
                   {post.title}
                 </span>
               </Link>
+              <div className="mt-2">
+                <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                  {post.excerpt || 'No excerpt available'}
+                </p>
+              </div>
             </div>
           ))}
         </div>

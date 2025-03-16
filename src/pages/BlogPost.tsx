@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { client } from '../lib/sanity.client';
@@ -95,26 +95,26 @@ export function BlogPost() {
          Back to blog
        </Link>
 
-       <article className="prose dark:prose-invert max-w-none">
-         <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8">
-           {post.title}
-         </h1>
-         
-         {post.mainImage && (
-           <img 
-             src={post.mainImage.asset.url} 
-             alt={post.title}
-             className="w-full h-auto mb-8 rounded-lg"
-           />
-         )}
-         
-         {post.author && (
-           <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-             By {post.author} • {new Date(post.publishedAt).toLocaleDateString()}
-           </p>
-         )}
-
-         <div className="text-gray-600 dark:text-gray-300">
+       <article className="prose prose-sm max-w-none dark:prose-invert">
+         <div className="mb-8">
+           <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">{post.title}</h1>
+           <div className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+             {post.publishedAt && (
+               <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
+             )}
+             {post.author && (
+               <span> · {post.author}</span>
+             )}
+           </div>
+           {post.mainImage && (
+             <img 
+               src={post.mainImage.asset.url} 
+               alt={post.title} 
+               className="w-full h-auto rounded-lg mb-6"
+             />
+           )}
+         </div>
+         <div className="prose prose-sm max-w-none dark:prose-invert text-gray-600 dark:text-gray-300">
            <PortableText
              value={post.body}
              components={{
