@@ -67,6 +67,10 @@ export function ProjectDetail() {
                   <>
                     I consulted with a client on importance of product imagery and it's impact on customer experience and visitor conversion. They agreed it makes sense to invest, but also pointed out the cost behind this process, especially considering that seasonal variations mean constant investments in product imagery. I agreed to investigate AI solutions that can help in this process.
                   </>
+                ) : project.slug === 'visual-cookbook' ? (
+                  <>
+                    A visual cookbook about chicken recipes that is ad free and gives you rich infographics and cooking instructions to spin the perfect meal. Check it out <button onClick={() => { window.location.href = 'https://chickenatlas.nestor.guide'; }} className="text-amber-600 dark:text-amber-400 hover:underline inline p-0 border-none bg-transparent cursor-pointer">here</button>.
+                  </>
                 ) : (
                   project.description
                 )}

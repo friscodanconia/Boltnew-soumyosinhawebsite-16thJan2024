@@ -174,42 +174,59 @@ export const projectsData = {
         `
       },
       {
-        id: "fitness-tracker",
-        slug: "fitness-tracker",
-        title: "Fitness Tracking App",
-        description: "A comprehensive fitness tracking application with workout planning and progress monitoring",
-        thumbnail: "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&q=80",
-        technologies: ["React Native", "Node.js", "MongoDB"],
+        id: "visual-cookbook",
+        slug: "visual-cookbook",
+        title: "Visual Cook Book",
+        description: "A visual cookbook about chicken recipes that is ad free and gives you rich infographics and cooking instructions to spin the perfect meal",
+        thumbnail: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&q=80",
+        technologies: ["lovable.dev", "Windsurf", "Vercel", "Open AI"],
         links: {
-          demo: "https://fitnesstracker-demo.com",
-          github: "https://github.com/example/fitness-tracker"
+          demo: "https://chickenatlas.nestor.guide/"
         },
         features: [
-          "Workout planning",
-          "Progress tracking",
-          "Nutrition logging",
-          "Social features"
+          "Ad-free recipe experience",
+          "Rich infographics",
+          "Detailed cooking instructions",
+          "Visual step-by-step guides"
         ],
+        why: "I like cooking, but looking for recipes is a very painful experience. Most sites are full of ads, pop ups, they run slow and often offer a lot of irrelavant information that I am not interested in. I wanted to build something that is easy, no ads, and straight gets you to the point. This is the initial MVP coded over in a weekend, I will continue making updates to this.",
         content: `
           <div class="space-y-8">
             <img 
-              src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&q=80"
-              alt="Fitness Tracker"
+              src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&q=80"
+              alt="Visual Cook Book"
               class="w-full h-64 object-cover rounded-lg"
             />
             
             <p>
-              A mobile fitness application that helps users track workouts, monitor progress, and achieve their fitness goals.
+              A visual cookbook about chicken recipes that is ad free and gives you rich infographics and cooking instructions to spin the perfect meal. Check it out <a href="https://chickenatlas.nestor.guide/" target="_blank" rel="noopener noreferrer" class="text-amber-600 dark:text-amber-400 hover:underline">here</a> and should open in a new tab.
             </p>
 
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Features</h2>
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">The Why</h2>
+            
+            <p class="text-gray-600 dark:text-gray-300">
+              I like cooking, but looking for recipes is a very painful experience. Most sites are full of ads, pop ups, they run slow and often offer a lot of irrelavant information that I am not interested in. I wanted to build something that is easy, no ads, and straight gets you to the point. This is the initial MVP coded over in a weekend, I will continue making updates to this.
+            </p>
+
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Key Features</h2>
             
             <div class="space-y-4">
               <ul class="list-disc pl-6 space-y-2">
-                <li>Customizable workout plans</li>
-                <li>Progress tracking and analytics</li>
-                <li>Nutrition tracking</li>
-                <li>Community features</li>
+                <li>Ad-free recipe experience</li>
+                <li>Rich infographics</li>
+                <li>Detailed cooking instructions</li>
+                <li>Visual step-by-step guides</li>
+              </ul>
+            </div>
+
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Tools Used</h2>
+            
+            <div class="space-y-4">
+              <ul class="list-disc pl-6 space-y-2">
+                <li>lovable.dev</li>
+                <li>Windsurf</li>
+                <li>Vercel</li>
+                <li>Open AI</li>
               </ul>
             </div>
           </div>
