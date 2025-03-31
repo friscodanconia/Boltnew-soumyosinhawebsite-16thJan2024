@@ -67,6 +67,10 @@ export function ProjectDetail() {
                   <>
                     I consulted with a client on importance of product imagery and it's impact on customer experience and visitor conversion. They agreed it makes sense to invest, but also pointed out the cost behind this process, especially considering that seasonal variations mean constant investments in product imagery. I agreed to investigate AI solutions that can help in this process.
                   </>
+                ) : project.slug === 'visual-cookbook' ? (
+                  <>
+                    A visual cookbook about chicken recipes that is ad free and gives you rich infographics and cooking instructions to spin the perfect meal. Check it out <button onClick={() => { window.location.href = 'https://chickenatlas.nestor.guide'; }} className="text-amber-600 dark:text-amber-400 hover:underline inline p-0 border-none bg-transparent cursor-pointer">here</button>.
+                  </>
                 ) : (
                   project.description
                 )}
@@ -161,7 +165,7 @@ export function ProjectDetail() {
             </section>
 
             <section>
-              <h2 className="text-base font-medium leading-snug text-gray-900 dark:text-gray-100 mb-4 md:mb-5">Technologies Used</h2>
+              <h2 className="text-base font-medium leading-snug text-gray-900 dark:text-gray-100 mb-4 md:mb-5">Tools Used</h2>
               {project.slug === 'ai-chatbot' ? (
                 <ul className="space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300 pl-1">
                   <li className="flex items-start">
@@ -207,6 +211,33 @@ export function ProjectDetail() {
                     <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
                     <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
                       HUgging Face hosted model
+                    </span>
+                  </li>
+                </ul>
+              ) : project.slug === 'visual-cookbook' ? (
+                <ul className="space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300 pl-1">
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                      lovable.dev
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                      Windsurf
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                      Vercel
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                      Open AI
                     </span>
                   </li>
                 </ul>

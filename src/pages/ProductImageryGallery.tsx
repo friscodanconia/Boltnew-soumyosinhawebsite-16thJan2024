@@ -10,33 +10,39 @@ export function ProductImageryGallery() {
   const images = [
     {
       id: 1,
-      src: "/src/assets/images/fashion-original.jpeg", 
+      src: "/assets/images/fashion-original.jpeg", 
       alt: "Fashion Model Variation 1",
       caption: "Original seed image"
     },
     {
       id: 2,
-      src: "/src/assets/images/fashion-variation1.jpeg",
+      src: "/assets/images/fashion-variation1.jpeg",
       alt: "Fashion Model Variation 2",
       caption: "AI-generated variation - color change"
     },
     {
       id: 3,
-      src: "/src/assets/images/fashion-variation2.jpeg",
+      src: "/assets/images/fashion-variation2.jpeg",
       alt: "Fashion Model Variation 3",
       caption: "AI-generated variation - style change"
     },
     {
       id: 4,
-      src: "/src/assets/images/fashion-variation3.jpeg",
+      src: "/assets/images/fashion-variation3.jpeg",
       alt: "Fashion Model Variation 4",
       caption: "AI-generated variation - pattern change"
     },
     {
       id: 5,
-      src: "/src/assets/images/fashion-variation4.jpeg",
+      src: "/assets/images/fashion-variation4.jpeg",
       alt: "Fashion Model Variation 5",
       caption: "AI-generated variation - background change"
+    },
+    {
+      id: 6,
+      src: "/assets/images/fashion-variation5.jpeg",
+      alt: "Fashion Model Variation 6",
+      caption: "AI-generated variation - lighting effect"
     }
   ];
 
