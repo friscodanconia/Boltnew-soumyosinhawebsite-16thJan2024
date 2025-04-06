@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { projectsData } from '../data/projectsData';
@@ -67,6 +67,10 @@ export function ProjectDetail() {
                   <>
                     I consulted with a client on importance of product imagery and it's impact on customer experience and visitor conversion. They agreed it makes sense to invest, but also pointed out the cost behind this process, especially considering that seasonal variations mean constant investments in product imagery. I agreed to investigate AI solutions that can help in this process.
                   </>
+                ) : project.slug === 'marketing-toolkit' ? (
+                  <>
+                    How to build a toolkit of product imagery, models, showcasing products, OOH, social media, print, and video assets using AI tools. You can check out the <a href="https://fi.pinterest.com/nestorguide/ai-ads/" target="_blank" rel="noopener noreferrer" className="text-amber-600 dark:text-amber-400 hover:underline">results here</a>.
+                  </>
                 ) : project.slug === 'visual-cookbook' ? (
                   <>
                     A visual cookbook about chicken recipes that is ad free and gives you rich infographics and cooking instructions to spin the perfect meal. Check it out <button onClick={() => { window.location.href = 'https://chickenatlas.nestor.guide'; }} className="text-amber-600 dark:text-amber-400 hover:underline inline p-0 border-none bg-transparent cursor-pointer">here</button>.
@@ -87,6 +91,10 @@ export function ProjectDetail() {
                 ) : project.slug === 'product-imagery-fashion' ? (
                   <>
                     Multi modal models are getting better every week. While LLM's are non deterministic still, they have found ways to make it better. You can add reference images, brand identity, character infusion to create upper and lower bounds on quality. I recently used a combination of experimental models to input one model image and it created five different variations across color and style. You can check them <Link to="/product-imagery-gallery" className="text-amber-600 dark:text-amber-400 hover:underline">here</Link>.
+                  </>
+                ) : project.slug === 'marketing-toolkit' ? (
+                  <>
+                    AI is becoming increasingly important and changes the input:output process. Earlier, marketing teams would build briefs, agencies will build protoypes, revisions and this process takes weeks, sometimes months. If AI can help improve this cycle through a rapid iteration process, we would unlock efficiencies. I wanted to test all these tools myself to see how the assets turn out.
                   </>
                 ) : (
                   project.why || "I like movies, but a bit frustrated by the increasingly complicated user journey of IMDB. I wanted to build a simple user experience where you can enter the name of movie, actor, actress and get relevant results. This tool is free of charge and using the TMDB API to get results and uses some custom ranking logic to display results."
@@ -126,6 +134,33 @@ export function ProjectDetail() {
                     <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
                     <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
                       Prompt Engineering
+                    </span>
+                  </li>
+                </ul>
+              ) : project.slug === 'marketing-toolkit' ? (
+                <ul className="space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300 pl-1">
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                      Product assets
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                      Model showcasing products
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                      Videos
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                      OOH, Social Media, Print Assets
                     </span>
                   </li>
                 </ul>
@@ -196,6 +231,27 @@ export function ProjectDetail() {
                     <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
                     <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
                       Windsurf (I found it better than Cursor)
+                    </span>
+                  </li>
+                </ul>
+              ) : project.slug === 'marketing-toolkit' ? (
+                <ul className="space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300 pl-1">
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                      Open AI, Google 2.0 Flash
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                      Eleven Labs, Murf.ai
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                      Pika Labs, Freepik, Runway, Higgsfield
                     </span>
                   </li>
                 </ul>

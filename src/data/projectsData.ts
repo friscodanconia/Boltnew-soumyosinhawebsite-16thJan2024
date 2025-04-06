@@ -233,42 +233,56 @@ export const projectsData = {
         `
       },
       {
-        id: "recipe-finder",
-        slug: "recipe-finder",
-        title: "Recipe Finder App",
-        description: "A recipe discovery platform with personalized recommendations and meal planning",
-        thumbnail: "https://images.unsplash.com/photo-1466637574441-749b8f19452f?auto=format&fit=crop&q=80",
-        technologies: ["Vue.js", "Express", "PostgreSQL"],
+        id: "marketing-toolkit",
+        slug: "marketing-toolkit",
+        title: "Marketing Toolkit",
+        description: "A marketing toolkit designed and built entirely with AI tools",
+        thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80",
+        technologies: ["AI Tools", "Content Generation", "Design Automation"],
         links: {
-          demo: "https://recipefinder-demo.com",
-          github: "https://github.com/example/recipe-finder"
+          demo: "https://marketing-toolkit-demo.com",
+          github: "https://github.com/example/marketing-toolkit"
         },
         features: [
-          "Recipe search",
-          "Meal planning",
-          "Shopping lists",
-          "Nutritional information"
+          "AI-powered content creation",
+          "Automated design templates",
+          "Campaign analytics",
+          "Brand consistency tools"
         ],
         content: `
           <div class="space-y-8">
             <img 
-              src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?auto=format&fit=crop&q=80"
-              alt="Recipe Finder"
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80"
+              alt="Marketing Toolkit"
               class="w-full h-64 object-cover rounded-lg"
             />
             
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Overview</h2>
             <p>
-              A comprehensive recipe platform that helps users discover, plan, and prepare meals with ease.
+              How to build a toolkit of product imagery, models, showcasing products, OOH, social media, print, and video assets using AI tools. You can check out the <a href="https://fi.pinterest.com/nestorguide/ai-ads/" target="_blank" rel="noopener noreferrer" class="underline">results here</a>.
             </p>
 
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Features</h2>
-            
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">The Why</h2>
+            <p>
+              AI is becoming increasingly important and changes the input:output process. Earlier, marketing teams would build briefs, agencies will build protoypes, revisions and this process takes weeks, sometimes months. If AI can help improve this cycle through a rapid iteration process, we would unlock efficiencies. I wanted to test all these tools myself to see how the assets turn out.
+            </p>
+
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Key Features</h2>
             <div class="space-y-4">
               <ul class="list-disc pl-6 space-y-2">
-                <li>Advanced recipe search</li>
-                <li>Meal planning tools</li>
-                <li>Automated shopping lists</li>
-                <li>Nutritional analysis</li>
+                <li>Product assets</li>
+                <li>Model showcasing products</li>
+                <li>Videos</li>
+                <li>OOH, Social Media, Print Assets</li>
+              </ul>
+            </div>
+
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Tools Used</h2>
+            <div class="space-y-4">
+              <ul class="list-disc pl-6 space-y-2">
+                <li>Open AI, Google 2.0 Flash</li>
+                <li>Eleven Labs, Murf.ai</li>
+                <li>Pika Labs, Freepik, Runway, Higgsfield</li>
               </ul>
             </div>
           </div>
