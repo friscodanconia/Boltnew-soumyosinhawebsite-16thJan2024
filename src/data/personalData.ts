@@ -14,11 +14,17 @@ export const aboutData = {
     },
     {
       text: "Based in",
-      location: "Seattle, United States",
-      locationLink: "https://maps.google.com/?q=Seattle"
+      location: "Bengaluru, India",
+      locationLink: "https://maps.google.com/?q=Bengaluru"
     }
   ],
   previously: [
+    {
+      role: "VP- Marketing and Growth",
+      company: "Krutrim",
+      companyLink: "https://www.kruti.ai/signin",
+      period: "2025 - 2026"
+    },
     {
       role: "Head of Services",
       company: "Apple",

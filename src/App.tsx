@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { useMediaQuery } from './hooks/useMediaQuery';
 import { Sidebar } from './components/Sidebar';
 import { AboutMe } from './components/AboutMe';
@@ -10,7 +10,6 @@ import { ProductImageryGallery } from './pages/ProductImageryGallery';
 import { Reading } from './components/Reading';
 import { Contact } from './components/Contact';
 import { MobileLanding } from './components/MobileLanding';
-import { SearchProvider } from './context/SearchContext';
 
 // Helper component to conditionally render mobile landing or content
 function AppContent() {
@@ -36,6 +35,7 @@ function AppContent() {
               <Route path="/product-imagery-gallery" element={<ProductImageryGallery />} />
               <Route path="/reading" element={<Reading />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="*" element={<Navigate to="/about" replace />} />
             </Routes>
           )}
         </main>
@@ -51,9 +51,7 @@ export default function App() {
 
   return (
     <Router>
-      <SearchProvider>
-        <AppContent />
-      </SearchProvider>
+      <AppContent />
     </Router>
   );
 }
