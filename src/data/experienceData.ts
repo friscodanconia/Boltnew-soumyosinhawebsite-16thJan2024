@@ -1,4 +1,20 @@
 export const experienceData = {
+  krutrim: {
+    company: "Krutrim",
+    role: "VP, Marketing and GTM",
+    period: "2025 - 2026",
+    location: "Bangalore, India",
+    link: "https://www.olakrutrim.com/",
+    description: "I led the go-to-market strategy and marketing for Krutrim, India's first AI Assistant, building and scaling the product from ground zero to millions of users across web, iOS, and Android platforms.",
+    achievements: [
+      "Built, launched, and marketed <a href='https://www.olakrutrim.com/' target='_blank' rel='noopener noreferrer'>Kruti, India's first AI Assistant</a>",
+      "Launched product across <a href='https://www.olakrutrim.com/' target='_blank' rel='noopener noreferrer'>web</a>, <a href='https://apps.apple.com/in/app/kruti-indias-ai-assistant/id6499513928' target='_blank' rel='noopener noreferrer'>iOS</a>, and <a href='https://play.google.com/store/apps/details?id=com.app.krutrim.prod&hl=en_IN' target='_blank' rel='noopener noreferrer'>Android</a>",
+      "Scaled user base to XX million users",
+      "Built and marketed India's first agentic AI platform from scratch",
+      "Drove PR coverage across <a href='https://www.business-standard.com/companies/news/bhavish-aggarwal-krutrim-launches-ai-assistant-kruti-for-task-automation-125061201216_1.html' target='_blank' rel='noopener noreferrer'>Business Standard</a>, <a href='https://www.entrepreneur.com/en-in/news-and-trends/olas-krutrim-unveils-ai-assistant-kruti-with-agentic/493204' target='_blank' rel='noopener noreferrer'>Entrepreneur</a>, and <a href='https://www.businesstoday.in/tech-today/news/story/kruti-explained-the-ai-assistant-that-books-cabs-orders-food-but-can-it-monetise-480227-2025-06-12' target='_blank' rel='noopener noreferrer'>BusinessToday</a>",
+      "Led acquisition, retention, and product analytics strategy"
+    ]
+  },
   apple: {
     company: "Apple",
     role: "Head of Services",
