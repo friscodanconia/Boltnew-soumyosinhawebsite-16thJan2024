@@ -12,7 +12,8 @@ export const experienceData = {
       "Scaled user base to XX million users",
       "Built and marketed India's first agentic AI platform from scratch",
       "Drove PR coverage across <a href='https://www.business-standard.com/companies/news/bhavish-aggarwal-krutrim-launches-ai-assistant-kruti-for-task-automation-125061201216_1.html' target='_blank' rel='noopener noreferrer'>Business Standard</a>, <a href='https://www.entrepreneur.com/en-in/news-and-trends/olas-krutrim-unveils-ai-assistant-kruti-with-agentic/493204' target='_blank' rel='noopener noreferrer'>Entrepreneur</a>, and <a href='https://www.businesstoday.in/tech-today/news/story/kruti-explained-the-ai-assistant-that-books-cabs-orders-food-but-can-it-monetise-480227-2025-06-12' target='_blank' rel='noopener noreferrer'>BusinessToday</a>",
-      "Led acquisition, retention, and product analytics strategy"
+      "Led acquisition, retention, and product analytics strategy",
+      "<a href='/krutrim-demos'>Watch Kruti in action</a> bringing agentic workflows to millions of customers"
     ]
   },
   apple: {
