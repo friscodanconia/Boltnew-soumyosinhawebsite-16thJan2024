@@ -1,12 +1,9 @@
 import { useRef } from 'react';
 import { MapPin } from 'lucide-react';
 import { aboutData } from '../data/personalData';
-import { MobileHeader } from './MobileHeader';
-import { useMediaQuery } from '../hooks/useMediaQuery';
 import { useHighlightSearch } from '../hooks/useHighlightSearch';
 
 export function AboutMe() {
-  const isMobile = useMediaQuery('(max-width: 768px)');
   const contentRef = useRef<HTMLDivElement>(null);
   useHighlightSearch(contentRef);
 
@@ -14,7 +11,6 @@ export function AboutMe() {
 
   return (
     <div className="max-w-3xl mx-auto">
-      {isMobile && <MobileHeader title="About Me" />}
       <div className="p-8 md:p-6 lg:p-8" ref={contentRef}>
         <header className="mb-12 md:mb-8 lg:mb-12">
           <div className="flex items-center space-x-2 mb-4">
@@ -66,7 +62,7 @@ export function AboutMe() {
               <p className="text-sm leading-relaxed text-gray-500 dark:text-gray-400 md:hidden">
                 {impactHighlights.map((item, index) => (
                   <span key={index}>
-                    <span className="font-medium text-gray-700 dark:text-gray-200">{item.metric}</span>
+                    <span className="font-semibold text-amber-600 dark:text-amber-400">{item.metric}</span>
                     <span className="ml-1">{item.label}</span>
                     {index < impactHighlights.length - 1 && (
                       <span className="mx-2 text-gray-400">·</span>
