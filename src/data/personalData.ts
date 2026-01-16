@@ -1,23 +1,19 @@
 export const aboutData = {
-  name: "My name is Soumyo (pronounced as shom-yo).\n\nI have started spending lot more time on AI as it represents a generational shift (everyone says that). Instead of saying, I am choosing to build. This entire site is built using AI, all the projects are using AI tools. I am not a coder, but I am learning by experimenting. If you find something broken, drop me an email from the Contact Me section.",
-  currently: [
-    {
-      text: "Executive consultant and technology tinkerer",
+  hero: {
+    personalIntro: "My name is Soumyo (pronounced as shom-yo).",
+    mainParagraph: "I've spent two decades at the intersection of technology and business — building and scaling consumer products across hardware, e-commerce, media, services, and AI. Most recently at Krutrim (Ola's AI unicorn), and prior stints at Apple, Amazon, Hotstar, Microsoft, and Nokia across India, US, and Europe."
+  },
+  quickFacts: {
+    location: {
+      label: "Bengaluru, India",
+      link: "https://maps.google.com/?q=Bengaluru"
     },
-    {
-      text: "Consulting with private equity and research houses",
-      projectLink: "https://www.linkedin.com/in/soumyosinha/"
-    },
-    {
-      text: "Learning and harnessing AI and agent frameworks",
-      projectLink: "https://www.linkedin.com/in/soumyosinha/"
-    },
-    {
-      text: "Based in",
-      location: "Bengaluru, India",
-      locationLink: "https://maps.google.com/?q=Bengaluru"
+    contact: {
+      email: "soumyosinha@gmail.com",
+      linkedin: "https://www.linkedin.com/in/soumyosinha/"
     }
-  ],
+  },
+  currently: "I consult with private equity firms and research houses, advise early-stage startups on GTM and growth, and experiment hands-on with AI tools to build products. This site and all the projects here are built using AI.",
   previously: [
     {
       role: "VP- Marketing and Growth",

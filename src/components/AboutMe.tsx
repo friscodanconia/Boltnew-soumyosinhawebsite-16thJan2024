@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { MapPin } from 'lucide-react';
 import { aboutData } from '../data/personalData';
 import { MobileHeader } from './MobileHeader';
@@ -10,7 +10,7 @@ export function AboutMe() {
   const contentRef = useRef<HTMLDivElement>(null);
   useHighlightSearch(contentRef);
 
-  const [name, description] = aboutData.name.split('.\n\n');
+  const { hero, quickFacts } = aboutData;
 
   return (
     <div className="max-w-3xl mx-auto">
@@ -21,40 +21,47 @@ export function AboutMe() {
             <MapPin className="w-6 h-6 text-gray-600 dark:text-gray-400" />
             <h1 className="text-lg font-medium leading-snug text-gray-900 dark:text-gray-100">About Me</h1>
           </div>
-          <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300 mb-4">
-            {name}.
-          </p>
-          <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-            {description}
-          </p>
+          <div className="space-y-4">
+            <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+              {hero.personalIntro}
+            </p>
+            <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+              {hero.mainParagraph}
+            </p>
+            <p className="text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+              <a
+                href={quickFacts.location.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-amber-600 dark:text-amber-400 hover:underline"
+              >
+                {quickFacts.location.label}
+              </a>
+              <span className="mx-2 text-gray-400">·</span>
+              <a
+                href={`mailto:${quickFacts.contact.email}`}
+                className="text-amber-600 dark:text-amber-400 hover:underline"
+              >
+                Email
+              </a>
+              <span className="mx-2 text-gray-400">·</span>
+              <a
+                href={quickFacts.contact.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-amber-600 dark:text-amber-400 hover:underline"
+              >
+                LinkedIn
+              </a>
+            </p>
+          </div>
         </header>
 
         <section className="mb-12 md:mb-8 lg:mb-12">
           <h2 className="text-base font-medium leading-snug text-gray-900 dark:text-gray-100 mb-4">Currently</h2>
-          <ul className="space-y-3">
-            {aboutData.currently.map((item, index) => (
-              <li key={index} className="flex items-start">
-                <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
-                <span className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-                  {item.text}
-                  {item.company && (
-                    <> at <a href={item.companyLink} className="text-amber-600 dark:text-amber-400 hover:underline">{item.company}</a></>
-                  )}
-                  {item.project && (
-                    <>, building <a href={item.projectLink} className="text-amber-600 dark:text-amber-400 hover:underline">{item.project}</a></>
-                  )}
-                  {item.location && (
-                    <> <a 
-                      href={item.locationLink} 
-                      className="text-amber-600 dark:text-amber-400 hover:underline"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >{item.location}</a></>
-                  )}
-                </span>
-              </li>
-            ))}
-          </ul>
+          <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+            {aboutData.currently}
+          </p>
         </section>
 
         <section className="mb-12 md:mb-8 lg:mb-12">
