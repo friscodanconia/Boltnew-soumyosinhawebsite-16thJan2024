@@ -13,6 +13,11 @@ export const aboutData = {
       linkedin: "https://www.linkedin.com/in/soumyosinha/"
     }
   },
+  impactHighlights: [
+    { metric: "$1B+", label: "revenue" },
+    { metric: "100M+", label: "users" },
+    { metric: "35+", label: "markets" }
+  ],
   currently: "I consult with private equity firms and research houses, advise early-stage startups on GTM and growth, and experiment hands-on with AI tools to build products. This site and all the projects here are built using AI.",
   previously: [
     {

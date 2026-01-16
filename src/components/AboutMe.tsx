@@ -10,7 +10,7 @@ export function AboutMe() {
   const contentRef = useRef<HTMLDivElement>(null);
   useHighlightSearch(contentRef);
 
-  const { hero, quickFacts } = aboutData;
+  const { hero, quickFacts, impactHighlights } = aboutData;
 
   return (
     <div className="max-w-3xl mx-auto">
@@ -27,6 +27,9 @@ export function AboutMe() {
             </p>
             <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
               {hero.mainParagraph}
+            </p>
+            <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+              {aboutData.currently}
             </p>
             <p className="text-sm leading-relaxed text-gray-500 dark:text-gray-400">
               <a
@@ -54,18 +57,42 @@ export function AboutMe() {
                 LinkedIn
               </a>
             </p>
+            {/* Impact Highlights */}
+            <div className="pt-4">
+              <h2 className="text-base font-medium text-gray-900 dark:text-gray-100 mb-3">
+                Built and scaled
+              </h2>
+              {/* Mobile: inline row */}
+              <p className="text-sm leading-relaxed text-gray-500 dark:text-gray-400 md:hidden">
+                {impactHighlights.map((item, index) => (
+                  <span key={index}>
+                    <span className="font-medium text-gray-700 dark:text-gray-200">{item.metric}</span>
+                    <span className="ml-1">{item.label}</span>
+                    {index < impactHighlights.length - 1 && (
+                      <span className="mx-2 text-gray-400">·</span>
+                    )}
+                  </span>
+                ))}
+              </p>
+              {/* Desktop: stacked columns */}
+              <div className="hidden md:flex gap-12">
+                {impactHighlights.map((item, index) => (
+                  <div key={index} className="flex flex-col">
+                    <span className="text-xl font-semibold text-amber-600 dark:text-amber-400">
+                      {item.metric}
+                    </span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400">
+                      {item.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </header>
 
         <section className="mb-12 md:mb-8 lg:mb-12">
-          <h2 className="text-base font-medium leading-snug text-gray-900 dark:text-gray-100 mb-4">Currently</h2>
-          <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-            {aboutData.currently}
-          </p>
-        </section>
-
-        <section className="mb-12 md:mb-8 lg:mb-12">
-          <h2 className="text-base font-medium leading-snug text-gray-900 dark:text-gray-100 mb-4">Previously</h2>
+          <h2 className="text-base font-medium leading-snug text-gray-900 dark:text-gray-100 mb-4">Experience</h2>
           <ul className="space-y-3">
             {aboutData.previously.map((item, index) => (
               <li key={index} className="flex items-start">
