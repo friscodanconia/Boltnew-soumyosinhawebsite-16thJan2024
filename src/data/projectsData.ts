@@ -103,7 +103,8 @@ export const projects: Project[] = [
           'NewsAPI.org for article data',
           'Slack Incoming Webhooks for delivery'
         ]
-      }
+      },
+      { type: 'cta', text: 'Read the build guide', url: '/projects/company-news-digest/guide' }
     ]
   },
   {
@@ -248,7 +249,8 @@ export const projects: Project[] = [
           'Google Places and Street View APIs',
           'Python for ETL scripts'
         ]
-      }
+      },
+      { type: 'cta', text: 'Read the build guide', url: '/projects/bbmp-tracker/guide' }
     ]
   },
   {
