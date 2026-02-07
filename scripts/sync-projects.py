@@ -19,6 +19,7 @@ Markdown format:
       - Tech 1
       - Tech 2
     date: 2026-02-07
+    publish: true                   # only publish: true files go live
     stats:                          # optional
       - value: "42"
         label: things built
@@ -390,7 +391,10 @@ def load_markdown_projects() -> list[dict]:
         return projects
 
     for md_file in sorted(PROJECTS_DIR.glob("*.md")):
-        # Skip files that are clearly build logs, not project cards
+        # Skip template files
+        if md_file.name.startswith("_"):
+            continue
+
         content = md_file.read_text()
         meta, body = parse_frontmatter(content)
 
@@ -400,6 +404,12 @@ def load_markdown_projects() -> list[dict]:
 
         if not meta.get("title"):
             print(f"  Skipping {md_file.name}: no title in frontmatter")
+            continue
+
+        # Only include projects with publish: true
+        publish = str(meta.get("publish", "false")).lower()
+        if publish != "true":
+            print(f"  Draft (publish: false): {meta['title']} ({md_file.name})")
             continue
 
         # Build project dict
