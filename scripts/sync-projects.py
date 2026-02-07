@@ -144,19 +144,9 @@ def parse_body(body: str, meta: dict) -> list[dict]:
     lines = body.split("\n")
     i = 0
 
-    # Thumbnail image section
-    thumbnail = meta.get("thumbnail", "")
-    if thumbnail:
-        sections.append({
-            "type": "image",
-            "src": thumbnail,
-            "alt": meta.get("title", "Project")
-        })
-
-    # Stats section (from frontmatter)
+    # Stats section (from frontmatter) — inserted after first text block
     stats = meta.get("stats")
     if stats and isinstance(stats, list) and isinstance(stats[0], dict):
-        # Stats go after intro text, we'll insert later
         pass
 
     while i < len(lines):
@@ -191,7 +181,7 @@ def parse_body(body: str, meta: dict) -> list[dict]:
             sections.append({"type": "text", "content": para})
 
             # Insert stats after the first text block (intro)
-            if stats and isinstance(stats, list) and isinstance(stats[0], dict) and len(sections) == 2:
+            if stats and isinstance(stats, list) and isinstance(stats[0], dict) and len(sections) == 1:
                 sections.insert(2, {
                     "type": "stats",
                     "items": [{"value": s["value"], "label": s["label"]} for s in stats]
@@ -249,9 +239,7 @@ def project_to_ts(p: dict, indent: int = 2) -> str:
     for section in p.get("sections", []):
         lines.append(f"{sp3}{{")
         if section["type"] == "image":
-            lines.append(f"{sp4}type: 'image',")
-            lines.append(f"{sp4}src: {json.dumps(section['src'])},")
-            lines.append(f"{sp4}alt: {json.dumps(section['alt'])}")
+            continue  # Skip image sections
         elif section["type"] == "text":
             lines.append(f"{sp4}type: 'text',")
             lines.append(f"{sp4}content: {json.dumps(section['content'])}")
@@ -331,54 +319,60 @@ export const projectsData = {
 # --- Extract existing projects not covered by markdown ---
 
 def extract_existing_projects(ts_content: str, markdown_ids: set) -> tuple[set, str]:
-    """Extract existing project IDs and the TS block for non-markdown projects."""
+    """Extract existing project IDs and the TS block for non-markdown projects.
+
+    Uses a simple approach: split the projects array into individual project
+    blocks by tracking brace depth from the top-level array.
+    """
     existing_ids = set()
-    # Find all id: "xxx" in the file
-    for m in re.finditer(r'id:\s*"([^"]+)"', ts_content):
-        existing_ids.add(m.group(1))
 
-    # We need to extract the TS source for projects NOT in markdown
-    # This is tricky with regex, so we'll use a simpler approach:
-    # Find each project block by matching { id: "xxx" ... }, blocks
-    keep_blocks = []
-    # Split on project boundaries
-    in_projects_array = False
-    brace_depth = 0
-    current_block = []
-    current_id = None
+    # Find the projects array content
+    start_marker = "export const projects: Project[] = ["
+    start_idx = ts_content.find(start_marker)
+    if start_idx == -1:
+        return set(), ""
+
+    array_start = start_idx + len(start_marker)
+
+    # Find matching ]; by tracking brace depth
+    depth = 1  # we're inside the [ already
+    pos = array_start
+    while pos < len(ts_content) and depth > 0:
+        ch = ts_content[pos]
+        if ch == '[':
+            depth += 1
+        elif ch == ']':
+            depth -= 1
+        pos += 1
+
+    array_content = ts_content[array_start:pos - 1]
+
+    # Split into individual project blocks by tracking { } depth
     blocks = []
+    block_start = None
+    depth = 0
+    for i, ch in enumerate(array_content):
+        if ch == '{':
+            if depth == 0:
+                block_start = i
+            depth += 1
+        elif ch == '}':
+            depth -= 1
+            if depth == 0 and block_start is not None:
+                block = array_content[block_start:i + 1]
+                # Find the project id
+                id_match = re.search(r'id:\s*["\']([^"\']+)["\']', block)
+                if id_match:
+                    pid = id_match.group(1)
+                    existing_ids.add(pid)
+                    if pid not in markdown_ids:
+                        # Include trailing comma if present
+                        trailing = array_content[i + 1:i + 2]
+                        block_text = block + ("," if trailing == "," else ",")
+                        blocks.append(block_text)
+                block_start = None
 
-    for line in ts_content.split("\n"):
-        if "export const projects: Project[]" in line:
-            in_projects_array = True
-            continue
-        if not in_projects_array:
-            continue
-
-        # Track braces
-        for ch in line:
-            if ch == "{":
-                brace_depth += 1
-            elif ch == "}":
-                brace_depth -= 1
-
-        if brace_depth >= 2 or (brace_depth == 1 and line.strip().startswith("{")):
-            current_block.append(line)
-            id_match = re.search(r'id:\s*"([^"]+)"', line)
-            if id_match:
-                current_id = id_match.group(1)
-        elif brace_depth == 1 and current_block:
-            current_block.append(line)
-            if current_id and current_id not in markdown_ids:
-                blocks.append("\n".join(current_block))
-            current_block = []
-            current_id = None
-        elif brace_depth <= 0 and in_projects_array:
-            if current_block and current_id and current_id not in markdown_ids:
-                blocks.append("\n".join(current_block))
-            break
-
-    return existing_ids, "\n".join(blocks)
+    return existing_ids, "\n".join(f"  {block}" for block in blocks)
 
 
 # --- Main ---
