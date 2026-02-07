@@ -61,7 +61,8 @@ export const projects: Project[] = [
           'GitHub Actions for daily automation',
           'Claude Code for the entire build'
         ]
-      }
+      },
+      { type: 'cta', text: 'Read the build guide', url: '/projects/ai-investment-research/guide' }
     ]
   },
   {
