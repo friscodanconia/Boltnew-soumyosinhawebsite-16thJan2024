@@ -12,6 +12,7 @@ import { KrutrimDemos } from './pages/KrutrimDemos';
 import { AIInvestmentResearchGuide } from './pages/AIInvestmentResearchGuide';
 import { BBMPTrackerGuide } from './pages/BBMPTrackerGuide';
 import { CompanyNewsDigestGuide } from './pages/CompanyNewsDigestGuide';
+import { SayItInIndiaGuide } from './pages/SayItInIndiaGuide';
 import { Reading } from './components/Reading';
 import { Contact } from './components/Contact';
 
@@ -33,6 +34,7 @@ function AppContent() {
             <Route path="/projects/ai-investment-research/guide" element={<AIInvestmentResearchGuide />} />
             <Route path="/projects/bbmp-tracker/guide" element={<BBMPTrackerGuide />} />
             <Route path="/projects/company-news-digest/guide" element={<CompanyNewsDigestGuide />} />
+            <Route path="/projects/say-it-in-india/guide" element={<SayItInIndiaGuide />} />
             <Route path="/product-imagery-gallery" element={<ProductImageryGallery />} />
             <Route path="/krutrim-demos" element={<KrutrimDemos />} />
             <Route path="/reading" element={<Reading />} />

@@ -140,6 +140,7 @@ export const projects: Project[] = [
         type: 'list',
         items: ["Sarvam AI Bulbul v3 TTS API for speech synthesis", "React 19 + TypeScript for the UI", "Tailwind CSS for styling", "Vite for build tooling"]
       },
+      { type: 'cta', text: 'Read the build guide', url: '/projects/say-it-in-india/guide' }
     ]
   },
   {
