@@ -31,6 +31,7 @@ export function GeoStateMap({ activeStep }: GeoStateMapProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const [tooltip, setTooltip] = useState<TooltipState>({ x: 0, y: 0, stateName: '', dishName: '', visible: false });
   const [popup, setPopup] = useState<PopupState | null>(null);
+  const [hasInteracted, setHasInteracted] = useState(false);
   const projectionRef = useRef<d3.GeoProjection | null>(null);
 
   // Build lookups
@@ -62,13 +63,18 @@ export function GeoStateMap({ activeStep }: GeoStateMapProps) {
     return d?.name || dish.dishId;
   }, [trendMap]);
 
-  // Close popup on Escape
+  // Close popup on Escape or scroll
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setPopup(null);
     };
+    const handleScroll = () => setPopup(null);
     window.addEventListener('keydown', handleKey);
-    return () => window.removeEventListener('keydown', handleKey);
+    window.addEventListener('scroll', handleScroll, true);
+    return () => {
+      window.removeEventListener('keydown', handleKey);
+      window.removeEventListener('scroll', handleScroll, true);
+    };
   }, []);
 
   // D3 rendering
@@ -93,9 +99,9 @@ export function GeoStateMap({ activeStep }: GeoStateMapProps) {
       ),
     };
 
-    // Projection — fit to mainland only
-    const projection = d3.geoMercator().fitSize(
-      [width, height * 0.95],
+    // Projection — fit to mainland only, with top padding so J&K isn't clipped
+    const projection = d3.geoMercator().fitExtent(
+      [[5, 15], [width - 5, height - 5]],
       geoFeatures as any
     );
     projectionRef.current = projection;
@@ -150,6 +156,7 @@ export function GeoStateMap({ activeStep }: GeoStateMapProps) {
         if (!stateId || !trendMap.has(stateId)) return;
 
         event.stopPropagation();
+        setHasInteracted(true);
 
         // Get centroid for popup positioning
         const centroid = pathGen.centroid(d as any);
@@ -227,13 +234,18 @@ export function GeoStateMap({ activeStep }: GeoStateMapProps) {
       {/* Color legend */}
       {legendDishes.length > 0 && (
         <div className="geo-legend" style={{
+          position: 'absolute',
+          bottom: hasInteracted || activeStep < 1 ? 4 : 20,
+          left: 0,
+          right: 0,
           display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'center',
           gap: '0.5rem 1rem',
-          padding: '0.5rem 0',
+          padding: '0.25rem 0',
           fontFamily: '"Jost", sans-serif',
           fontSize: '0.75rem',
+          pointerEvents: 'none',
         }}>
           {legendDishes.map(d => (
             <div key={d.id} style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
@@ -247,6 +259,24 @@ export function GeoStateMap({ activeStep }: GeoStateMapProps) {
               <span style={{ color: '#68594f' }}>{d.name}</span>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Tap hint for mobile */}
+      {!hasInteracted && activeStep >= 1 && (
+        <div style={{
+          position: 'absolute',
+          bottom: 4,
+          left: 0,
+          right: 0,
+          textAlign: 'center',
+          fontFamily: '"Jost", sans-serif',
+          fontSize: '0.7rem',
+          color: '#afa39c',
+          animation: 'pulse 2s ease-in-out infinite',
+          pointerEvents: 'none',
+        }}>
+          Tap any state to explore
         </div>
       )}
 

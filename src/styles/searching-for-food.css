@@ -762,10 +762,25 @@
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
 /* Mobile overrides */
 @media (max-width: 768px) {
   .food-guide {
-    font-size: 1rem;
+    font-size: 1.075rem;
+  }
+
+  .food-guide .content-col p {
+    font-size: 1.075rem;
+    line-height: 1.8;
+  }
+
+  .food-guide .scrolly-step-content p {
+    font-size: 1.05rem;
+    line-height: 1.75;
   }
 
   /* Scrollytelling: viz on top, text scrolls below */
@@ -778,7 +793,7 @@
     order: -1;
     position: sticky;
     top: 0;
-    height: 40vh;
+    height: 48vh;
     z-index: 10;
     background: var(--fg-cream);
     overflow: hidden;
@@ -823,8 +838,16 @@
   }
 
   .food-guide .hero {
-    min-height: 70vh;
+    min-height: auto;
     padding: 1.5rem;
+  }
+
+  .food-guide .hero-meta {
+    margin-top: 1rem;
+  }
+
+  .food-guide .hero-credits {
+    margin-top: 0.75rem;
   }
 
   .food-guide .hero-dish-float {
