@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useMediaQuery } from './hooks/useMediaQuery';
 import { Sidebar } from './components/Sidebar';
 import { BottomNav } from './components/BottomNav';
@@ -13,13 +13,27 @@ import { AIInvestmentResearchGuide } from './pages/AIInvestmentResearchGuide';
 import { BBMPTrackerGuide } from './pages/BBMPTrackerGuide';
 import { CompanyNewsDigestGuide } from './pages/CompanyNewsDigestGuide';
 import { SayItInIndiaGuide } from './pages/SayItInIndiaGuide';
+import { SearchingForFoodGuide } from './pages/SearchingForFoodGuide';
 import { Reading } from './components/Reading';
 import { Contact } from './components/Contact';
+
+// Full-bleed routes that render without sidebar/nav
+const FULL_BLEED_ROUTES = ['/projects/searching-for-food/guide'];
 
 // Helper component to render app content
 function AppContent() {
   const isMobile = useMediaQuery('(max-width: 768px)');
-  
+  const location = useLocation();
+  const isFullBleed = FULL_BLEED_ROUTES.includes(location.pathname);
+
+  if (isFullBleed) {
+    return (
+      <Routes>
+        <Route path="/projects/searching-for-food/guide" element={<SearchingForFoodGuide />} />
+      </Routes>
+    );
+  }
+
   return (
     <div className="h-screen flex flex-col bg-white dark:bg-gray-900">
       <div className="flex flex-1 overflow-hidden">
